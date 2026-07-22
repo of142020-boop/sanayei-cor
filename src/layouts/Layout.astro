@@ -1,0 +1,292 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  navbarStyle?: 'transparent' | 'solid';
+}
+
+const {
+  title,
+  description = 'صنايعي كور متخصص في تخريم الخرسانة وعمل فتحات بالكور دريل. خدمات قص وتخريم الخرسانة المسلحة في القاهرة والجيزة وجميع محافظات مصر. اتصل الآن 01055550195',
+  canonical,
+  ogImage = '/images/تخريم-خرسانة-بالكور.webp',
+  noindex = false,
+  navbarStyle = 'transparent',
+} = Astro.props;
+
+const siteUrl = 'https://sanayeicor.com';
+const canonicalUrl = canonical || `${siteUrl}${Astro.url.pathname}`;
+
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'الرئيسية' },
+  { href: '/خدماتنا/', label: 'الخدمات' },
+  { href: '/تخريم-خرسانة/', label: 'تخريم كور' },
+  { href: '/قص-خرسانة/', label: 'قص خرسانة' },
+  { href: '/مناطق/', label: 'المناطق' },
+  { href: '/الاسئلة-الشائعة/', label: 'الأسئلة الشائعة' },
+  { href: '/اتصل-بنا/', label: 'اتصل بنا' },
+];
+---
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    }
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="صنايعي كور - تخريم الخرسانة بالكور دريل" />
+    <meta property="og:site_name" content="صنايعي كور" />
+    <meta property="og:locale" content="ar_EG" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+    <!-- Hreflang (Arabic Egypt) -->
+    <link rel="alternate" hreflang="ar-eg" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+
+    <!-- Schema: LocalBusiness + WebSite -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": `${siteUrl}/#business`,
+          "name": "صنايعي كور",
+          "alternateName": "Sanayei Cor",
+          "description": "متخصصون في قص وتخريم الخرسانة المسلحة بالكور دريل والمنشار الماسي في جميع محافظات مصر",
+          "url": siteUrl,
+          "telephone": "+201055550195",
+          "image": `${siteUrl}${ogImage}`,
+          "priceRange": "$$",
+          "currenciesAccepted": "EGP",
+          "paymentAccepted": "Cash",
+          "areaServed": [
+            { "@type": "City", "name": "القاهرة" },
+            { "@type": "City", "name": "الجيزة" },
+            { "@type": "City", "name": "6 أكتوبر" },
+            { "@type": "City", "name": "الإسكندرية" },
+            { "@type": "State", "name": "مصر" }
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "EG",
+            "addressRegion": "القاهرة الكبرى"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+201055550195",
+            "contactType": "customer service",
+            "availableLanguage": "Arabic",
+            "contactOption": "TollFree"
+          },
+          "sameAs": [],
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Saturday","Sunday"],
+            "opens": "07:00",
+            "closes": "22:00"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "خدمات صنايعي كور",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تخريم خرسانة بالكور دريل" }},
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "قص خرسانة بالمنشار الماسي" }},
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "فتحات غاز طبيعي بالكور" }},
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "فتحات تكييف وتهوية بالكور" }},
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "فتحات سباكة وصرف صحي بالكور" }}
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${siteUrl}/#website`,
+          "url": siteUrl,
+          "name": "صنايعي كور",
+          "inLanguage": "ar-EG",
+          "description": "الموقع الرسمي لصنايعي كور المتخصصين في تخريم وقص الخرسانة في مصر",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": `${siteUrl}/?s={search_term_string}`,
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    })} />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <header class={`navbar ${navbarStyle === 'solid' ? 'scrolled' : ''}`} id="navbar">
+      <div class="container">
+        <div class="nav-inner">
+          <a href="/" class="nav-logo" aria-label="صنايعي كور - الصفحة الرئيسية">
+            <div class="logo-icon">⚙</div>
+            <span>صنايعي <em style="font-style:normal;color:white">كور</em></span>
+          </a>
+
+          <nav class="nav-links" id="navLinks" aria-label="القائمة الرئيسية">
+            {navLinks.map(link => (
+              <a
+                href={link.href}
+                class={currentPath === link.href || currentPath.startsWith(link.href) && link.href !== '/' ? 'active' : ''}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div class="nav-cta">
+            <a href="tel:+201055550195" class="nav-phone" aria-label="اتصل بنا">
+              📞 01055550195
+            </a>
+            <a href="tel:+201055550195" class="btn btn-primary" style="padding:10px 20px; font-size:0.9rem;">
+              اتصل الآن
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="فتح/إغلاق القائمة" aria-expanded="false">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo">
+              <div class="icon">⚙</div>
+              <span>صنايعي <strong style="color:var(--primary)">كور</strong></span>
+            </div>
+            <p>متخصصون في قص وتخريم الخرسانة المسلحة بالكور دريل والمنشار الماسي. أحدث المعدات الألمانية، دقة هندسية، وبدون اهتزازات أو غبار.</p>
+            <div class="social-links">
+              <a href="https://wa.me/201055550195" class="social-link" title="واتساب" rel="noopener noreferrer" target="_blank">📱</a>
+              <a href="tel:+201055550195" class="social-link" title="اتصال مباشر">📞</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>خدماتنا</h4>
+            <div class="footer-links">
+              <a href="/تخريم-خرسانة/">تخريم خرسانة بالكور</a>
+              <a href="/قص-خرسانة/">قص خرسانة بالمنشار</a>
+              <a href="/خدماتنا/فتحات-غاز/">فتحات غاز طبيعي</a>
+              <a href="/خدماتنا/فتحات-تكييف/">فتحات تكييف وتهوية</a>
+              <a href="/خدماتنا/فتحات-سباكة/">فتحات سباكة وصرف</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>مناطق الخدمة</h4>
+            <div class="footer-links">
+              <a href="/مناطق/القاهرة/">صنايعي كور القاهرة</a>
+              <a href="/مناطق/الجيزة/">صنايعي كور الجيزة</a>
+              <a href="/مناطق/أكتوبر/">صنايعي كور أكتوبر</a>
+              <a href="/مناطق/الإسكندرية/">صنايعي كور الإسكندرية</a>
+              <a href="/مناطق/">جميع المناطق</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>تواصل معنا</h4>
+            <div class="footer-contact-items">
+              <div class="contact-item">
+                <span class="icon">📞</span>
+                <div>
+                  <a href="tel:+201055550195" style="color:var(--primary); font-weight:700">01055550195</a>
+                  <small style="display:block; color:var(--text-muted)">من 7 صباحاً حتى 10 مساءً</small>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="icon">📱</span>
+                <div>
+                  <a href="https://wa.me/201055550195" style="color:var(--primary); font-weight:700" target="_blank" rel="noopener noreferrer">واتساب</a>
+                  <small style="display:block; color:var(--text-muted)">رد فوري على استفساراتك</small>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="icon">📍</span>
+                <span>نخدم جميع محافظات مصر</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© {new Date().getFullYear()} صنايعي كور — جميع الحقوق محفوظة</p>
+          <div style="display:flex; gap:16px;">
+            <a href="/الاسئلة-الشائعة/" style="color:var(--text-muted); font-size:0.85rem;">الأسئلة الشائعة</a>
+            <a href="/من-نحن/" style="color:var(--text-muted); font-size:0.85rem;">من نحن</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Navbar scroll effect
+      const navbar = document.getElementById('navbar');
+      const navToggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar?.classList.add('scrolled');
+        } else {
+          navbar?.classList.remove('scrolled');
+        }
+      });
+
+      // Mobile nav toggle
+      navToggle?.addEventListener('click', () => {
+        navLinks?.classList.toggle('open');
+        const isOpen = navLinks?.classList.contains('open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      // FAQ accordion
+      document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+          const item = question.closest('.faq-item');
+          const isOpen = item?.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+          if (!isOpen) item?.classList.add('open');
+        });
+      });
+    </script>
+  </body>
+</html>
