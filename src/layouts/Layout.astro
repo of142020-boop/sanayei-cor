@@ -148,15 +148,15 @@ const navLinks = [
       <div class="container">
         <div class="nav-inner">
           <a href="/" class="nav-logo" aria-label="صنايعي كور - الصفحة الرئيسية">
-            <div class="logo-icon"></div>
-            <span>صنايعي <em style="font-style:normal;color:white">كور</em></span>
+            <div class="nav-logo-icon">SC</div>
+            <span>صنايعي <strong style="color:var(--primary)">كور</strong></span>
           </a>
 
           <nav class="nav-links" id="navLinks" aria-label="القائمة الرئيسية">
             {navLinks.map(link => (
               <a
                 href={link.href}
-                class={currentPath === link.href || currentPath.startsWith(link.href) && link.href !== '/' ? 'active' : ''}
+                class={currentPath === link.href || (currentPath.startsWith(link.href) && link.href !== '/') ? 'active' : ''}
               >
                 {link.label}
               </a>
@@ -164,16 +164,10 @@ const navLinks = [
           </nav>
 
           <div class="nav-cta">
-            <a href="tel:+201055550195" class="nav-phone" aria-label="اتصل بنا">
-               01055550195
-            </a>
-            <a href="tel:+201055550195" class="btn btn-primary" style="padding:10px 20px; font-size:0.9rem;">
-              اتصل الآن
-            </a>
+            <a href="tel:+201055550195" class="nav-phone-link" aria-label="اتصل بنا">01055550195</a>
+            <a href="tel:+201055550195" class="btn btn-primary" style="padding:10px 20px;font-size:.9rem;">اتصل الآن</a>
             <button class="nav-toggle" id="navToggle" aria-label="فتح/إغلاق القائمة" aria-expanded="false">
-              <span></span>
-              <span></span>
-              <span></span>
+              <span></span><span></span><span></span>
             </button>
           </div>
         </div>
@@ -189,8 +183,8 @@ const navLinks = [
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <div class="logo">
-              <div class="icon"></div>
+            <div class="footer-logo">
+              <div class="footer-logo-icon">SC</div>
               <span>صنايعي <strong style="color:var(--primary)">كور</strong></span>
             </div>
             <p>متخصصون في قص وتخريم الخرسانة المسلحة بالكور دريل والمنشار الماسي. أحدث المعدات الألمانية، دقة هندسية، وبدون اهتزازات أو غبار.</p>
@@ -224,23 +218,23 @@ const navLinks = [
 
           <div class="footer-col">
             <h4>تواصل معنا</h4>
-            <div class="footer-contact-items">
-              <div class="contact-item">
-                <span class="icon"></span>
+            <div class="footer-contact-list">
+              <div class="footer-contact-item">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.06 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
                 <div>
-                  <a href="tel:+201055550195" style="color:var(--primary); font-weight:700">01055550195</a>
-                  <small style="display:block; color:var(--text-muted)">من 7 صباحاً حتى 10 مساءً</small>
+                  <a href="tel:+201055550195" style="color:var(--primary);font-weight:700">01055550195</a>
+                  <small style="display:block;color:var(--text-muted)">من 7 صباحاً حتى 10 مساءً</small>
                 </div>
               </div>
-              <div class="contact-item">
-                <span class="icon"></span>
+              <div class="footer-contact-item">
+                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
                 <div>
-                  <a href="https://wa.me/201055550195" style="color:var(--primary); font-weight:700" target="_blank" rel="noopener noreferrer">واتساب</a>
-                  <small style="display:block; color:var(--text-muted)">رد فوري على استفساراتك</small>
+                  <a href="https://wa.me/201055550195" style="color:var(--primary);font-weight:700" target="_blank" rel="noopener noreferrer">واتساب</a>
+                  <small style="display:block;color:var(--text-muted)">رد فوري على استفساراتك</small>
                 </div>
               </div>
-              <div class="contact-item">
-                <span class="icon"></span>
+              <div class="footer-contact-item">
+                <svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
                 <span>نخدم جميع محافظات مصر</span>
               </div>
             </div>
@@ -251,14 +245,15 @@ const navLinks = [
     <div class="footer-bottom">
       <div class="container">
         <div class="footer-bottom-inner">
-          <p>© {new Date().getFullYear()} صنايعي كور — جميع الحقوق محفوظة</p>
-          <div style="display:flex; gap:16px;">
+          <p>&copy; {new Date().getFullYear()} صنايعي كور — جميع الحقوق محفوظة</p>
+          <div class="footer-links-row">
             <a href="/الاسئلة-الشائعة/">الأسئلة الشائعة</a>
-            <a href="/من-نحن/">من نحن</a>
+            <a href="/اتصل-بنا/">اتصل بنا</a>
           </div>
         </div>
       </div>
     </div>
+
 
 
     <script>
