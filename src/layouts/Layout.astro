@@ -144,11 +144,11 @@ const navLinks = [
 
   <body>
     <!-- Navbar -->
-    <header class={`navbar ${navbarStyle === 'solid' ? 'scrolled' : ''}`} id="navbar">
+    <header class="navbar scrolled" id="navbar">
       <div class="container">
         <div class="nav-inner">
           <a href="/" class="nav-logo" aria-label="صنايعي كور - الصفحة الرئيسية">
-            <div class="logo-icon">⚙</div>
+            <div class="logo-icon"></div>
             <span>صنايعي <em style="font-style:normal;color:white">كور</em></span>
           </a>
 
@@ -165,7 +165,7 @@ const navLinks = [
 
           <div class="nav-cta">
             <a href="tel:+201055550195" class="nav-phone" aria-label="اتصل بنا">
-              📞 01055550195
+               01055550195
             </a>
             <a href="tel:+201055550195" class="btn btn-primary" style="padding:10px 20px; font-size:0.9rem;">
               اتصل الآن
@@ -190,13 +190,13 @@ const navLinks = [
         <div class="footer-grid">
           <div class="footer-brand">
             <div class="logo">
-              <div class="icon">⚙</div>
+              <div class="icon"></div>
               <span>صنايعي <strong style="color:var(--primary)">كور</strong></span>
             </div>
             <p>متخصصون في قص وتخريم الخرسانة المسلحة بالكور دريل والمنشار الماسي. أحدث المعدات الألمانية، دقة هندسية، وبدون اهتزازات أو غبار.</p>
             <div class="social-links">
-              <a href="https://wa.me/201055550195" class="social-link" title="واتساب" rel="noopener noreferrer" target="_blank">📱</a>
-              <a href="tel:+201055550195" class="social-link" title="اتصال مباشر">📞</a>
+              <a href="https://wa.me/201055550195" class="social-link" title="واتساب" rel="noopener noreferrer" target="_blank"></a>
+              <a href="tel:+201055550195" class="social-link" title="اتصال مباشر"></a>
             </div>
           </div>
 
@@ -226,36 +226,40 @@ const navLinks = [
             <h4>تواصل معنا</h4>
             <div class="footer-contact-items">
               <div class="contact-item">
-                <span class="icon">📞</span>
+                <span class="icon"></span>
                 <div>
                   <a href="tel:+201055550195" style="color:var(--primary); font-weight:700">01055550195</a>
                   <small style="display:block; color:var(--text-muted)">من 7 صباحاً حتى 10 مساءً</small>
                 </div>
               </div>
               <div class="contact-item">
-                <span class="icon">📱</span>
+                <span class="icon"></span>
                 <div>
                   <a href="https://wa.me/201055550195" style="color:var(--primary); font-weight:700" target="_blank" rel="noopener noreferrer">واتساب</a>
                   <small style="display:block; color:var(--text-muted)">رد فوري على استفساراتك</small>
                 </div>
               </div>
               <div class="contact-item">
-                <span class="icon">📍</span>
+                <span class="icon"></span>
                 <span>نخدم جميع محافظات مصر</span>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="footer-bottom">
+        </div><!-- /footer-grid -->
+      </div><!-- /container -->
+    </footer>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
           <p>© {new Date().getFullYear()} صنايعي كور — جميع الحقوق محفوظة</p>
           <div style="display:flex; gap:16px;">
-            <a href="/الاسئلة-الشائعة/" style="color:var(--text-muted); font-size:0.85rem;">الأسئلة الشائعة</a>
-            <a href="/من-نحن/" style="color:var(--text-muted); font-size:0.85rem;">من نحن</a>
+            <a href="/الاسئلة-الشائعة/">الأسئلة الشائعة</a>
+            <a href="/من-نحن/">من نحن</a>
           </div>
         </div>
       </div>
-    </footer>
+    </div>
+
 
     <script>
       // Navbar scroll effect
