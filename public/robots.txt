@@ -1,37 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /404
 
-# Google
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-# Bing
-User-agent: Bingbot
-Allow: /
-
-# AI Crawlers - Allow full access for AI Overviews
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: GoogleOther
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-# Sitemap
 Sitemap: https://sanayeicor.com/sitemap.xml

@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { existsSync } from 'node:fs';
 
 interface Props {
   title: string;
@@ -12,25 +13,29 @@ interface Props {
 
 const {
   title,
-  description = 'صنايعي كور متخصص في تخريم الخرسانة وعمل فتحات بالكور دريل. خدمات قص وتخريم الخرسانة المسلحة في القاهرة والجيزة وجميع محافظات مصر. اتصل الآن 01055550195',
+  description = 'صنايعي كور متخصص في تخريم الخرسانة وعمل فتحات بالكور دريل. خدمات قص وتخريم الخرسانة المسلحة في القاهرة والجيزة ومناطق الخدمة الموضحة بالموقع. اتصل الآن 01055550195',
   canonical,
-  ogImage = '/images/تخريم-خرسانة-بالكور.webp',
+  ogImage = '/images/social-card.png',
   noindex = false,
   navbarStyle = 'transparent',
 } = Astro.props;
 
-const siteUrl = 'https://sanayeicor.com';
-const canonicalUrl = canonical || `${siteUrl}${Astro.url.pathname}`;
+const siteUrl = Astro.site?.origin || 'https://sanayeicor.com';
+const canonicalUrl = new URL(canonical || `${Astro.url.pathname.replace(/\/$/, '')}/`, siteUrl).href;
+const socialImage = ogImage.startsWith('/') && existsSync(`${process.cwd()}/public${ogImage}`) ? ogImage : '/images/social-card.png';
 
-const currentPath = Astro.url.pathname;
+const currentPath = decodeURIComponent(Astro.url.pathname);
+
+const pathParts = currentPath.split('/').filter(Boolean);
+const breadcrumbItems = [{ '@type': 'ListItem', position: 1, name: 'الرئيسية', item: `${siteUrl}/` }, ...pathParts.map((part, index) => ({ '@type': 'ListItem', position: index + 2, name: index === pathParts.length - 1 ? title.split('|')[0].trim() : part.replaceAll('-', ' '), item: new URL(`/${pathParts.slice(0,index+1).join('/')}/`, siteUrl).href }))];
 
 const navLinks = [
   { href: '/', label: 'الرئيسية' },
   { href: '/خدماتنا/', label: 'الخدمات' },
-  { href: '/تخريم-خرسانة/', label: 'تخريم كور' },
-  { href: '/قص-خرسانة/', label: 'قص خرسانة' },
+  { href: '/اسعار-الخدمات/', label: 'أسعارنا' },
+  { href: '/مقالات/', label: 'المدونة' },
   { href: '/مناطق/', label: 'المناطق' },
-  { href: '/الاسئلة-الشائعة/', label: 'الأسئلة الشائعة' },
+  { href: '/نبذة-عنا/', label: 'عن صنايعي كور' },
   { href: '/اتصل-بنا/', label: 'اتصل بنا' },
 ];
 ---
@@ -49,12 +54,14 @@ const navLinks = [
       : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     }
 
+    {pathParts.length > 0 && !noindex && <script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:breadcrumbItems})} />}
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:image" content={`${siteUrl}${socialImage}`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="صنايعي كور - تخريم الخرسانة بالكور دريل" />
@@ -65,7 +72,7 @@ const navLinks = [
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+    <meta name="twitter:image" content={`${siteUrl}${socialImage}`} />
 
     <!-- Hreflang (Arabic Egypt) -->
     <link rel="alternate" hreflang="ar-eg" href={canonicalUrl} />
@@ -80,10 +87,10 @@ const navLinks = [
           "@id": `${siteUrl}/#business`,
           "name": "صنايعي كور",
           "alternateName": "Sanayei Cor",
-          "description": "متخصصون في قص وتخريم الخرسانة المسلحة بالكور دريل والمنشار الماسي في جميع محافظات مصر",
+          "description": "متخصصون في قص وتخريم الخرسانة المسلحة بالكور دريل والمنشار الماسي في مناطق الخدمة الموضحة بالموقع",
           "url": siteUrl,
           "telephone": "+201055550195",
-          "image": `${siteUrl}${ogImage}`,
+          "image": `${siteUrl}${socialImage}`,
           "priceRange": "$$",
           "currenciesAccepted": "EGP",
           "paymentAccepted": "Cash",
@@ -103,13 +110,12 @@ const navLinks = [
             "@type": "ContactPoint",
             "telephone": "+201055550195",
             "contactType": "customer service",
-            "availableLanguage": "Arabic",
-            "contactOption": "TollFree"
+            "availableLanguage": "Arabic"
           },
           "sameAs": [],
           "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Saturday","Sunday"],
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
             "opens": "07:00",
             "closes": "22:00"
           },
@@ -131,18 +137,24 @@ const navLinks = [
           "url": siteUrl,
           "name": "صنايعي كور",
           "inLanguage": "ar-EG",
-          "description": "الموقع الرسمي لصنايعي كور المتخصصين في تخريم وقص الخرسانة في مصر",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": `${siteUrl}/?s={search_term_string}`,
-            "query-input": "required name=search_term_string"
-          }
+          "description": "الموقع الرسمي لصنايعي كور المتخصصين في تخريم وقص الخرسانة في مصر"
+        },
+        {
+          "@type": "WebPage",
+          "@id": `${canonicalUrl}#webpage`,
+          "url": canonicalUrl,
+          "name": title,
+          "description": description,
+          "inLanguage": "ar-EG",
+          "isPartOf": { "@id": `${siteUrl}/#website` },
+          "about": { "@id": `${siteUrl}/#business` }
         }
       ]
     })} />
   </head>
 
   <body>
+    <a class="skip-link" href="#main-content">انتقل إلى المحتوى</a>
     <!-- Navbar -->
     <header class="navbar scrolled" id="navbar">
       <div class="container">
@@ -166,7 +178,7 @@ const navLinks = [
           <div class="nav-cta">
             <a href="tel:+201055550195" class="nav-phone-link" aria-label="اتصل بنا">01055550195</a>
             <a href="tel:+201055550195" class="btn btn-primary" style="padding:10px 20px;font-size:.9rem;">اتصل الآن</a>
-            <button class="nav-toggle" id="navToggle" aria-label="فتح/إغلاق القائمة" aria-expanded="false">
+            <button class="nav-toggle" id="navToggle" aria-label="فتح/إغلاق القائمة" aria-expanded="false" aria-controls="navLinks">
               <span></span><span></span><span></span>
             </button>
           </div>
@@ -174,7 +186,7 @@ const navLinks = [
       </div>
     </header>
 
-    <main>
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
 
@@ -187,32 +199,29 @@ const navLinks = [
               <div class="footer-logo-icon">SC</div>
               <span>صنايعي <strong style="color:var(--primary)">كور</strong></span>
             </div>
-            <p>متخصصون في قص وتخريم الخرسانة المسلحة بالكور دريل والمنشار الماسي. أحدث المعدات الألمانية، دقة هندسية، وبدون اهتزازات أو غبار.</p>
-            <div class="social-links">
-              <a href="https://wa.me/201055550195" class="social-link" title="واتساب" rel="noopener noreferrer" target="_blank"></a>
-              <a href="tel:+201055550195" class="social-link" title="اتصال مباشر"></a>
-            </div>
+            <p>صنايعي كور لخدمات تخريم الخرسانة بالكور دريل، وفتحات الغاز والتكييف والسباكة، وقص الخرسانة بالمنشار. تواصل لتحديد متطلبات شغلك وطلب عرض سعر.</p>
+            
           </div>
 
           <div class="footer-col">
             <h4>خدماتنا</h4>
             <div class="footer-links">
-              <a href="/تخريم-خرسانة/">تخريم خرسانة بالكور</a>
-              <a href="/قص-خرسانة/">قص خرسانة بالمنشار</a>
-              <a href="/خدماتنا/فتحات-غاز/">فتحات غاز طبيعي</a>
+              <a href="/خدماتنا/تخريم-خرسانة/">تخريم خرسانة بالكور</a>
+              <a href="/خدماتنا/قص-الخرسانة-بالمنشار/">قص خرسانة بالمنشار</a>
+              <a href="/خدماتنا/فتحات-الغاز-والشفاطات/">فتحات الغاز والشفاطات</a>
+              <a href="/خدماتنا/تزريع-اشاير-حديد/">تزريع اشاير حديد وايبوكسي</a>
               <a href="/خدماتنا/فتحات-تكييف/">فتحات تكييف وتهوية</a>
-              <a href="/خدماتنا/فتحات-سباكة/">فتحات سباكة وصرف</a>
             </div>
           </div>
 
           <div class="footer-col">
             <h4>مناطق الخدمة</h4>
             <div class="footer-links">
+              <a href="/مناطق/التجمع-الخامس/">صنايعي كور التجمع</a>
+              <a href="/مناطق/اكتوبر-وزايد/">صنايعي كور أكتوبر وزايد</a>
               <a href="/مناطق/القاهرة/">صنايعي كور القاهرة</a>
               <a href="/مناطق/الجيزة/">صنايعي كور الجيزة</a>
-              <a href="/مناطق/أكتوبر/">صنايعي كور أكتوبر</a>
               <a href="/مناطق/الإسكندرية/">صنايعي كور الإسكندرية</a>
-              <a href="/مناطق/">جميع المناطق</a>
             </div>
           </div>
 
@@ -220,22 +229,22 @@ const navLinks = [
             <h4>تواصل معنا</h4>
             <div class="footer-contact-list">
               <div class="footer-contact-item">
-                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.06 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="var(--primary)"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.06 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
                 <div>
                   <a href="tel:+201055550195" style="color:var(--primary);font-weight:700">01055550195</a>
                   <small style="display:block;color:var(--text-muted)">من 7 صباحاً حتى 10 مساءً</small>
                 </div>
               </div>
               <div class="footer-contact-item">
-                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="#25D366"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
                 <div>
                   <a href="https://wa.me/201055550195" style="color:var(--primary);font-weight:700" target="_blank" rel="noopener noreferrer">واتساب</a>
-                  <small style="display:block;color:var(--text-muted)">رد فوري على استفساراتك</small>
+                  <small style="display:block;color:var(--text-muted)">أرسل صور الموقع والمقاسات</small>
                 </div>
               </div>
               <div class="footer-contact-item">
-                <svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
-                <span>نخدم جميع محافظات مصر</span>
+                
+                <span>تواصل لتأكيد تغطية عنوانك</span>
               </div>
             </div>
           </div>
@@ -247,6 +256,9 @@ const navLinks = [
         <div class="footer-bottom-inner">
           <p>&copy; {new Date().getFullYear()} صنايعي كور — جميع الحقوق محفوظة</p>
           <div class="footer-links-row">
+            <a href="/نبذة-عنا/">عن صنايعي كور</a>
+            <a href="/اسعار-الخدمات/">أسعار خدماتنا</a>
+            <a href="/مقالات/">المدونة والمقالات</a>
             <a href="/الاسئلة-الشائعة/">الأسئلة الشائعة</a>
             <a href="/اتصل-بنا/">اتصل بنا</a>
           </div>
@@ -256,6 +268,10 @@ const navLinks = [
 
 
 
+    <div class="mobile-contact" aria-label="تواصل سريع">
+      <a href="tel:+201055550195">اتصال <bdi>01055550195</bdi></a>
+      <a href="https://wa.me/201055550195" target="_blank" rel="noopener noreferrer">واتساب · اطلب عرض سعر</a>
+    </div>
     <script>
       // Navbar scroll effect
       const navbar = document.getElementById('navbar');
@@ -276,14 +292,26 @@ const navLinks = [
         const isOpen = navLinks?.classList.contains('open');
         navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navLinks?.classList.contains('open')) {
+          navLinks.classList.remove('open');
+          navToggle?.setAttribute('aria-expanded', 'false');
+          navToggle?.focus();
+        }
+      });
 
       // FAQ accordion
       document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', () => {
+        const toggle = () => {
           const item = question.closest('.faq-item');
           const isOpen = item?.classList.contains('open');
           document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
           if (!isOpen) item?.classList.add('open');
+          document.querySelectorAll('.faq-question').forEach(q => q.setAttribute('aria-expanded', q.closest('.faq-item')?.classList.contains('open') ? 'true' : 'false'));
+        };
+        question.addEventListener('click', toggle);
+        question.addEventListener('keydown', (event) => {
+          if (event instanceof KeyboardEvent && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); toggle(); }
         });
       });
     </script>

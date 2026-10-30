@@ -1,149 +1,18 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-
-const title = "الأسئلة الشائعة عن تخريم الخرسانة بالكور | صنايعي كور | 01055550195";
-const description = "إجابات شاملة على كل ما يخص تخريم الخرسانة بالكور دريل: الأسعار، الأقطار، الوقت، الأمان، والفرق بين الكور والمنشار. صنايعي كور — 01055550195";
+import Layout from '../../layouts/Layout.astro';
+const faqs = [
+ ['ما هو الكور دريل؟', 'معدة تستخدم رأسًا أسطوانيًا ماسيًا لتجهيز فتحة دائرية في الخرسانة أو خامات أخرى، لتمرير مواسير أو كابلات حسب متطلبات الموقع.'],
+ ['ما الفرق بين الكور والمنشار الماسي؟', 'الكور يعمل فتحات دائرية، بينما يستخدم المنشار للقص المستقيم مثل فتحات الأبواب والنوافذ. تتحدد الطريقة المناسبة بناءً على شكل الفتحة والخامة.'],
+ ['كم سعر فتحة الكور؟', 'تتحدد التكلفة حسب القطر والعمق والخامة وعدد الفتحات والمنطقة وسهولة الوصول. أرسل تفاصيل الموقع والصور للحصول على تقدير، ثم اتفق على السعر ونطاق العمل قبل التنفيذ.'],
+ ['هل يمكن تخريم عمود أو كمرة أو سقف؟', 'العمل في العناصر الإنشائية يحتاج مراجعة واعتماد مهندس إنشائي قبل التنفيذ. الكور لا يضمن بمفرده سلامة العنصر، ولا يجوز افتراض السماح بقطع حديد التسليح.'],
+ ['كيف أحدد قطر فتحة الغاز أو التكييف؟', 'اطلب المقاس والمكان والميل من شركة الغاز أو فني التركيب. القطر يعتمد على الماسورة والجهاز والخلوص المطلوب؛ لا يوجد قطر موحد لكل الحالات.'],
+ ['هل توجد مياه أو مخلفات أثناء الحفر؟', 'الحفر الرطب يستخدم المياه للتبريد وينتج مياه ومخلفات حفر تحتاج للتجميع. اتفق قبل الزيارة على حماية التشطيبات وتجميع المخلفات وتجهيز الكهرباء والمياه.'],
+ ['كم يستغرق التنفيذ؟', 'المدة تتوقف على عدد الفتحات وعمقها وخامتها وإمكانية تثبيت المعدة والوصول. يُراجع الوقت المتوقع بعد الاطلاع على تفاصيل الموقع.'],
+ ['ما مناطق الخدمة؟', 'توجد صفحات لخدمات القاهرة والجيزة والتجمع الخامس وأكتوبر وزايد والإسكندرية. تواصل لتأكيد إمكانية الوصول إلى عنوانك والموعد المتاح قبل الحجز.'],
+ ['ماذا أرسل لطلب عرض سعر؟', 'أرسل المنطقة وصور المكان وعدد الفتحات ومقاساتها وسُمك الحائط إن أمكن. وضّح الارتفاع والخامة والغرض من الفتحة وأي متطلبات خاصة بالدخول أو العمل.'],
+];
 ---
-
-<Layout title={title} description={description} navbarStyle="solid">
-  <div class="breadcrumb">
-    <div class="container">
-      <nav aria-label="مسار التنقل">
-        <a href="/">الرئيسية</a><span class="separator">›</span>
-        <span>الأسئلة الشائعة</span>
-      </nav>
-      <h1>الأسئلة الشائعة عن تخريم الخرسانة بالكور</h1>
-      <p>كل ما تريد معرفته قبل الاتصال بصنايعي كور — إجابات واضحة وعملية</p>
-    </div>
-  </div>
-
-  <section class="section">
-    <div class="container" style="max-width:860px;">
-
-      <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
-
-        <div class="faq-item open" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <div class="faq-question" role="button" tabindex="0">
-            <div class="q-icon">Q</div>
-            <span itemprop="name">ما هو الكور دريل وكيف يعمل في تخريم الخرسانة؟</span>
-          </div>
-          <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">الكور دريل (Core Drill) هو جهاز حفر متخصص يستخدم رأساً ماسياً أسطوانياً (Diamond Core Bit) يدور بسرعة عالية مع ضخ المياه المستمر. هذا الحفر الرطب ينتج فتحات دائرية مثالية في الخرسانة المسلحة بدون أي اهتزازات أو تشقيق للمناطق المحيطة.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <div class="faq-question" role="button" tabindex="0">
-            <div class="q-icon">Q</div>
-            <span itemprop="name">ما الفرق بين الكور دريل والمنشار الماسي؟</span>
-          </div>
-          <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">الكور دريل: يعمل فتحات دائرية (مستديرة) لتمرير المواسير والكابلات. المنشار الماسي: يقص الخرسانة بخط مستقيم لفتح الأبواب والنوافذ. الكور أسرع للفتحات الصغيرة، والمنشار أفضل للقطوعات المستقيمة الكبيرة.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <div class="faq-question" role="button" tabindex="0">
-            <div class="q-icon">Q</div>
-            <span itemprop="name">كم سعر فتحة الكور في مصر 2025؟</span>
-          </div>
-          <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">أسعار فتحات الكور في مصر 2025: فتحة الغاز الطبيعي (2 بوصة) من 150 إلى 250 جنيه. فتحة التكييف (3-4 بوصة) من 200 إلى 400 جنيه. فتحة السباكة والصرف (4-6 بوصة) من 250 إلى 500 جنيه. تختلف الأسعار حسب سُمك الجدار ودرجة التسليح والمنطقة. للسعر الدقيق اتصل على 01055550195.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <div class="faq-question" role="button" tabindex="0">
-            <div class="q-icon">Q</div>
-            <span itemprop="name">هل الكور دريل يسبب تصدعات أو تشققات في المبنى؟</span>
-          </div>
-          <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">لا على الإطلاق. تقنية الكور دريل الرطب (Wet Core Drilling) لا تنتج أي اهتزازات لأن الحركة دوارة سلسة. على عكس الحفر بالمطرقة الكهربائية التي تُحدث اهتزازات قوية، الكور دريل آمن تماماً على الهيكل الإنشائي للمبنى.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <div class="faq-question" role="button" tabindex="0">
-            <div class="q-icon">Q</div>
-            <span itemprop="name">ما الأقطار المتاحة لفتحات الكور؟</span>
-          </div>
-          <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">نوفر فتحات كور بأقطار من 1 بوصة (2.5 سم) حتى 12 بوصة (30 سم). الأكثر طلباً: 2 بوصة للغاز، 3-4 بوصة للتكييف، 4-6 بوصة للصرف الصحي. أي قطر خاص يمكن تنفيذه بعد المعاينة.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <div class="faq-question" role="button" tabindex="0">
-            <div class="q-icon">Q</div>
-            <span itemprop="name">كم الوقت الذي يستغرقه تنفيذ فتحة الكور؟</span>
-          </div>
-          <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">فتحة الكور الواحدة في جدار عادي (20 سم سُمك) تستغرق من 10 إلى 20 دقيقة. الجدران السميكة جداً (40+ سم) تستغرق من 30 إلى 60 دقيقة. معظم المشاريع المنزلية (3-10 فتحات) تنتهي خلال 2-4 ساعات في نفس اليوم.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <div class="faq-question" role="button" tabindex="0">
-            <div class="q-icon">Q</div>
-            <span itemprop="name">هل هناك غبار أو مياه أثناء تخريم الخرسانة؟</span>
-          </div>
-          <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">نستخدم الحفر الرطب الذي يمنع انتشار الغبار تماماً. يوجد مياه قليلة أثناء الحفر يتم جمعها في وعاء مخصص. بعد الانتهاء نُنظف الموقع بالكامل ونسلمه نظيفاً.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <div class="faq-question" role="button" tabindex="0">
-            <div class="q-icon">Q</div>
-            <span itemprop="name">هل تعملون في الطوابق العالية؟</span>
-          </div>
-          <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">نعم، نعمل في جميع الطوابق من الأرضي حتى الطوابق العليا. فريقنا مجهز بجميع معدات السلامة والسقالات اللازمة للعمل على الارتفاعات.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <div class="faq-question" role="button" tabindex="0">
-            <div class="q-icon">Q</div>
-            <span itemprop="name">هل تعملون في الأسقف الخرسانية؟</span>
-          </div>
-          <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">نعم، الكور دريل يعمل في الجدران والأسقف والأرضيات على حد سواء. فتحات السقف شائعة جداً لشفاطات الحمام والمطبخ والتكييف المركزي.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <div class="faq-question" role="button" tabindex="0">
-            <div class="q-icon">Q</div>
-            <span itemprop="name">ما المناطق التي تخدمونها؟</span>
-          </div>
-          <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">نخدم جميع محافظات مصر: القاهرة (مصر الجديدة، التجمع، المعادي)، الجيزة (الدقي، المهندسين، فيصل)، 6 أكتوبر والشيخ زايد، الإسكندرية، المنصورة، الإسماعيلية، وباقي المحافظات. اتصل على 01055550195 للتأكيد.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="card" style="margin-top:48px; text-align:center; background:rgba(245,158,11,0.04); border-color:rgba(245,158,11,0.2);">
-        <h2 style="font-size:1.5rem; margin-bottom:12px;">لم تجد إجابة لسؤالك؟</h2>
-        <p style="color:var(--text-muted); margin-bottom:24px;">تواصل معنا مباشرة وسيرد عليك فريقنا المتخصص فوراً</p>
-        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-          <a href="tel:+201055550195" class="btn btn-primary" id="faq-page-call"> اتصل - 01055550195</a>
-          <a href="https://wa.me/201055550195" class="btn btn-outline" target="_blank" rel="noopener noreferrer" id="faq-page-wa"> واتساب</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<Layout title="أسئلة عن الكور وتخريم الخرسانة والأسعار | صنايعي كور" description="إجابات عن سعر فتحة الكور، المقاسات، تجهيز الموقع، مدة التنفيذ، ومناطق خدمة صنايعي كور. اعرف التفاصيل المطلوبة قبل طلب عرض السعر.">
+<div class="breadcrumb"><div class="container"><nav aria-label="مسار التنقل"><a href="/">الرئيسية</a><span>›</span><span>الأسئلة الشائعة</span></nav><h1>أسئلة عن الكور وتخريم الخرسانة</h1><p>إجابات تساعدك تجهّز شغلك وتتفق على المقاس والتكلفة قبل الزيارة.</p></div></div>
+<section class="section"><div class="container" style="max-width:860px"><div class="native-faq">{faqs.map(([question,answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}</div><div class="core-actions"><a href="/خدماتنا/تخريم-خرسانة/" class="btn btn-outline">خدمة تخريم الخرسانة</a><a href="/#quote" class="btn btn-primary">اطلب عرض سعر</a></div></div></section>
 </Layout>
-
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "ما هو الكور دريل؟", "acceptedAnswer": { "@type": "Answer", "text": "جهاز حفر يستخدم رأساً ماسياً دواراً مع ماء لعمل فتحات دائرية في الخرسانة بدون اهتزازات." }},
-    { "@type": "Question", "name": "كم سعر فتحة الكور في مصر 2025؟", "acceptedAnswer": { "@type": "Answer", "text": "من 150 إلى 500 جنيه حسب القطر والسُمك. الغاز 150-250ج، التكييف 200-400ج، الصرف 250-500ج. اتصل 01055550195." }},
-    { "@type": "Question", "name": "هل الكور دريل يسبب تصدعات؟", "acceptedAnswer": { "@type": "Answer", "text": "لا، تقنية الحفر الرطب الدوراني لا تنتج أي اهتزازات تؤثر على الهيكل." }},
-    { "@type": "Question", "name": "ما الأقطار المتاحة لفتحات الكور؟", "acceptedAnswer": { "@type": "Answer", "text": "من 1 إلى 12 بوصة. للغاز 2 بوصة، للتكييف 3-4 بوصة، للصرف 4-6 بوصة." }},
-    { "@type": "Question", "name": "كم يستغرق تنفيذ فتحة الكور؟", "acceptedAnswer": { "@type": "Answer", "text": "10-20 دقيقة للجدار العادي. معظم المشاريع المنزلية تنتهي في 2-4 ساعات." }}
-  ]
-})} />
