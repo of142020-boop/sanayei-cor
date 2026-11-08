@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import QuoteRequest from '../components/QuoteRequest.astro';
+import WorkGallery from '../components/WorkGallery.astro';
 const services = [
   { n: '01', title: 'تخريم خرسانة بالكور دريل', href: 'تخريم-خرسانة', text: 'فتحات دائرية لمرور المواسير والكابلات في الحوائط والأسقف الخرسانية، بالمقاس المناسب للتنفيذ.' },
   { n: '02', title: 'فتحات التكييف والتهوية', href: 'فتحات-تكييف', text: 'فتحات مسارات مواسير التكييف والتهوية، مع تحديد المسار والميل المطلوب مع فني التركيب.' },
@@ -48,6 +49,17 @@ const faqs = [
       <div class="grid-3">{services.map(service => <a class="core-service" href={`/خدماتنا/${service.href}/`}><span class="service-number">{service.n}</span><h3>{service.title}</h3><p>{service.text}</p><span class="text-link">تفاصيل الخدمة ←</span></a>)}</div>
     </div>
   </section>
+  <WorkGallery
+    title="معدات الكور والقص في مواقع التنفيذ"
+    description="صور توضيحية لمعدات الكور دريل والمنشار الماسي المستخدمة في أعمال التخريم والقص."
+    images={[
+      { src: '/images/work-gallery/work-01-core-drilling-wall.webp', alt: 'تخريم حائط خرساني بالكور دريل' },
+      { src: '/images/work-gallery/work-03-track-saw-site.webp', alt: 'منشار خرسانة على سكة أثناء تجهيز الموقع' },
+      { src: '/images/work-gallery/work-09-concrete-cutting-site.webp', alt: 'منشار ماسي لقص الخرسانة في موقع تنفيذ' },
+      { src: '/images/work-gallery/work-14-core-drill-vent.webp', alt: 'تجهيز فتحة تهوية دائرية في خرسانة' },
+      { src: '/images/work-gallery/work-17-core-hole-wall.webp', alt: 'فتحة كور في حائط خرساني لتمرير خدمات' },
+    ]}
+  />
   <section class="section-alt" aria-labelledby="choose-h"><div class="container core-guide-grid">
     <div><span class="section-label">قبل ما تبدأ</span><h2 id="choose-h">اختيار صنايعي كور<br />يبدأ بفهم المطلوب</h2><p class="spaced-copy">لو بتدور على فني كور أو مقاول تخريم خرسانة، وضوح التفاصيل من البداية يساعدك تقارن عروض الأسعار وتجهّز الموقع صح.</p><a href="/خدماتنا/تخريم-خرسانة/" class="text-link">دليل خدمة تخريم الخرسانة ←</a></div>
     <div class="check-list"><div><b>01 / مقاس مناسب للتركيب</b><p>راجع قطر الماسورة والخلوص والميل مع فني التركيب، بدل توسيع الفتحة بعد التشطيب.</p></div><div><b>02 / مراجعة مكان الفتحة</b><p>تأكد من مسارات الكهرباء والمياه، واطلب اعتماد المهندس قبل العمل في العناصر الإنشائية.</p></div><div><b>03 / اتفاق واضح على التكلفة</b><p>وضّح العدد والعمق والخامة والارتفاع، وهل السعر يشمل الانتقال وتجميع مخلفات الحفر.</p></div></div>

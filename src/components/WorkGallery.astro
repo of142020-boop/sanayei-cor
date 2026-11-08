@@ -1,0 +1,42 @@
+---
+interface GalleryImage {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  title?: string;
+  description?: string;
+  images: GalleryImage[];
+}
+
+const {
+  title = 'معدات الكور والقص أثناء التنفيذ',
+  description = 'لقطات توضيحية لمعدات الكور دريل والمنشار الماسي في مواقع العمل.',
+  images,
+} = Astro.props;
+---
+
+<section class="section work-gallery" aria-label={title}>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">معدات التنفيذ</span>
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </div>
+    <div class="work-gallery-grid">
+      {images.map((image, index) => (
+        <figure class="work-gallery-card">
+          <img
+            src={image.src}
+            alt={image.alt}
+            width="1600"
+            height="1067"
+            loading={index > 2 ? 'lazy' : 'eager'}
+            decoding="async"
+          />
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,16 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import QuoteRequest from './QuoteRequest.astro';
+import WorkGallery from './WorkGallery.astro';
 import { services } from '../data/services';
 interface Props { slug: string }
 const service = services.find(item => item.slug === Astro.props.slug);
 if (!service) throw new Error(`Unknown service: ${Astro.props.slug}`);
 const related = services.filter(item => item.slug !== service.slug).slice(0,3);
 const url = new URL(`/خدماتنا/${service.slug}/`, Astro.site).href;
+const sawGallery = service.slug === 'قص-الخرسانة-بالمنشار' ? [
+  { src: '/images/work-gallery/work-04-wall-saw-water.webp', alt: 'منشار جدار خرساني أثناء التجهيز' },
+  { src: '/images/work-gallery/work-05-wall-saw-concrete.webp', alt: 'قرص منشار ماسي لقص الخرسانة' },
+  { src: '/images/work-gallery/work-08-wall-saw-jobsite.webp', alt: 'منشار سكة لقص الخرسانة في موقع عمل' },
+  { src: '/images/work-gallery/work-10-hydraulic-concrete-saw.webp', alt: 'منشار خرساني هيدروليكي لتجهيز القص' },
+] : [];
 ---
 <Layout title={`${service.name} | صنايعي كور — اتصل 01271940742`} description={`${service.description} اتصل الآن على 01271940742 لطلب عرض سعر.`} navbarStyle="solid">
   <div class="breadcrumb"><div class="container"><nav aria-label="مسار التنقل"><a href="/">الرئيسية</a><span>›</span><a href="/خدماتنا/">الخدمات</a><span>›</span><span>{service.short}</span></nav><h1>{service.name} — اتصل 01271940742</h1><p>{service.intro}</p><div class="core-actions"><a href="#quote" class="btn btn-primary">اطلب عرض سعر للخدمة</a><a href="tel:+201271940742" class="btn btn-outline">اتصل <bdi>01271940742</bdi></a></div><nav aria-label="محتوى الخدمة"><a href="#details">تفاصيل الخدمة</a><span>·</span><a href="#prepare">قبل الزيارة</a><span>·</span><a href="#questions">أسئلة شائعة</a></nav></div></div>
   <section class="section" id="details"><div class="container core-guide-grid"><div><h2>{service.heading}</h2>{service.paragraphs.map(text => <p class="spaced-copy">{text}</p>)}<a href={`/مقالات/${service.article}/`} class="text-link">{service.articleLabel} ←</a></div><aside class="card" id="prepare"><h2 style="font-size:1.4rem">ما المطلوب قبل الزيارة؟</h2><ul class="service-checklist">{service.checklist.map(item => <li>{item}</li>)}</ul></aside></div></section>
+  {sawGallery.length > 0 && <WorkGallery title="منشار الخرسانة أثناء التنفيذ" description="صور توضيحية لمعدات القص الماسي والمنشار على السكة في أعمال الخرسانة." images={sawGallery} />}
   <section class="section-alt"><div class="container core-guide-grid"><div><span class="section-label">اتفاق واضح</span><h2>ما الذي يشمله طلبك؟</h2><p class="spaced-copy">{service.boundaries}</p></div><div><h2>كيف تتحدد التكلفة؟</h2><p class="spaced-copy">{service.pricing}</p><a href="/اسعار-الخدمات/" class="text-link">عوامل تسعير الخدمات ←</a></div></div></section>
   <section class="section" id="questions"><div class="container core-guide-grid"><div><h2>أسئلة عن {service.short}</h2><p class="spaced-copy">التفاصيل قبل الزيارة تساعدك تختار الخدمة وتتفق على نطاق العمل.</p><a href="/الاسئلة-الشائعة/" class="text-link">المزيد من الأسئلة ←</a></div><div class="native-faq">{service.faqs.map(([q,a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>
   <section class="section-alt" id="quote"><div class="container core-guide-grid"><div><span class="section-label">أرسل تفاصيل موقعك</span><h2>اطلب {service.short}</h2><p class="spaced-copy">جهّز المنطقة والمقاسات والصور. سنراجع إمكانية الخدمة ونتفق على التكلفة والموعد بعد الاطلاع على التفاصيل.</p><a href="/مناطق/" class="text-link">راجع مناطق الخدمة ←</a></div><QuoteRequest initialService={service.short} /></div></section>
