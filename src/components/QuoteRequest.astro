@@ -4,7 +4,7 @@ const { initialService, initialArea } = Astro.props;
 const options = ['تخريم خرسانة بالكور', 'فتحات تكييف', 'فتحات غاز أو شفاط', 'فتحات سباكة', 'قص خرسانة بالمنشار', 'تزريع أشاير حديد'];
 if (initialService && !options.includes(initialService)) options.unshift(initialService);
 ---
-<form class="quote-form" id="quote-request" action="https://wa.me/201055550195" method="get" target="_blank" rel="noopener noreferrer">
+<form class="quote-form" id="quote-request" action="https://wa.me/201271940742" method="get" target="_blank" rel="noopener noreferrer">
   <h3>جهّز طلب عرض السعر</h3>
   <label for="quote-service">الخدمة المطلوبة</label>
   <select id="quote-service" required><option value="">اختر الخدمة</option>{options.map(option => <option selected={option === initialService}>{option}</option>)}</select>
@@ -13,7 +13,7 @@ if (initialService && !options.includes(initialService)) options.unshift(initial
   <input type="hidden" name="text" id="quote-message" />
   <button type="submit" class="btn btn-primary w-full">افتح الطلب على واتساب ←</button>
   <p class="quote-note">ستفتح محادثة واتساب لتراجع الرسالة وترسلها بنفسك. يمكنك إضافة الصور هناك.</p>
-  <noscript><p>لتجهيز الطلب تلقائيًا فعّل JavaScript، أو <a href="https://wa.me/201055550195">تواصل مباشرة على واتساب</a>.</p></noscript>
+  <noscript><p>لتجهيز الطلب تلقائيًا فعّل JavaScript، أو <a href="https://wa.me/201271940742">تواصل مباشرة على واتساب</a>.</p></noscript>
 </form>
 <script>
   const form = document.querySelector<HTMLFormElement>('#quote-request');
