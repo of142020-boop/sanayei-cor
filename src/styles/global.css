@@ -466,10 +466,10 @@ ul{list-style:none}
 .hero-specs span::before{content:'✓';color:#edc67d;margin-left:7px}
 .technical-panel{border:1px solid #ffffff26;background:#ffffff05;border-radius:16px;overflow:hidden;position:relative}
 .panel-top{padding:20px 24px;display:flex;justify-content:space-between;direction:ltr;font-size:.72rem;letter-spacing:2px;color:#adbfda;border-bottom:1px solid #ffffff1a}
-.brand-showcase{min-height:360px;display:grid;place-items:center;position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(circle at 50% 48%,#ffffff10 0 28%,transparent 29%),linear-gradient(135deg,#102a52 0%,#0a1b36 100%)}
-.brand-showcase::before,.brand-showcase::after{content:'';position:absolute;border:1px solid #edc67d33;border-radius:50%;z-index:-1}.brand-showcase::before{width:430px;height:430px}.brand-showcase::after{width:300px;height:300px;border-color:#ffffff12}
-.brand-showcase-glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 57%,#e43a1522,transparent 52%);z-index:-1}
-.brand-showcase img{width:min(82%,390px);height:auto;aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 20px 20px #0008);position:relative;z-index:1;transform:translateY(8px)}
+.brand-showcase{min-height:380px;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(145deg,#112d58 0%,#0b1d3a 100%)}
+.brand-showcase::before{content:'';position:absolute;width:480px;height:480px;border:1px solid #ffffff12;transform:rotate(25deg);border-radius:48px}
+.brand-showcase::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 51% 50%,#e43a151a,transparent 58%)}
+.brand-showcase img{width:min(76%,360px);height:auto;aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 18px 18px #0006);position:relative;z-index:1}
 .panel-caption{padding:0 26px 24px}.panel-caption strong{font-size:1.35rem;color:#edc67d}.panel-caption p{color:#c4d1e5;font-size:.9rem;margin-top:8px}
 .panel-link{display:block;border-top:1px solid #ffffff26;padding:18px 26px;font-size:.83rem;color:#fff;background:#ffffff06}
 .brief-strip{background:#edc67d;color:#0d2143;padding:20px 0}.brief-strip .container{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.brief-strip span{font-size:.9rem}.brief-strip a{margin-right:auto;font-weight:800;font-size:.85rem}
@@ -489,7 +489,7 @@ ul{list-style:none}
 :focus-visible{outline:3px solid #b77b13;outline-offset:4px}
 .mobile-contact{display:none}.page-header h1{color:#fff}
 @media(max-width:1100px){.nav-links a{padding:8px;font-size:.8rem}.nav-phone-link{display:none}.core-hero-grid{gap:36px}}
-@media(max-width:800px){.core-hero{padding:125px 0 48px}.core-hero-grid,.core-guide-grid{grid-template-columns:1fr;gap:34px}.core-hero h1{letter-spacing:-.5px}.technical-panel{max-width:540px;width:100%;margin:auto}.brand-showcase{min-height:290px}.brand-showcase img{width:min(86%,320px)}.section-heading-row{align-items:start;flex-direction:column;gap:14px}.area-links{grid-template-columns:repeat(2,1fr)}.quick-answers{grid-template-columns:1fr}.core-actions .btn{white-space:normal;font-size:.88rem}.brief-strip a{margin-right:0}.core-guide-grid{gap:30px}}
+@media(max-width:800px){.core-hero{padding:125px 0 48px}.core-hero-grid,.core-guide-grid{grid-template-columns:1fr;gap:34px}.core-hero h1{letter-spacing:-.5px}.technical-panel{max-width:540px;width:100%;margin:auto}.brand-showcase{min-height:300px}.brand-showcase img{width:min(76%,300px)}.section-heading-row{align-items:start;flex-direction:column;gap:14px}.area-links{grid-template-columns:repeat(2,1fr)}.quick-answers{grid-template-columns:1fr}.core-actions .btn{white-space:normal;font-size:.88rem}.brief-strip a{margin-right:0}.core-guide-grid{gap:30px}}
 @media(max-width:768px){body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}.mobile-contact{position:fixed;bottom:0;left:0;right:0;z-index:1100;background:#0d2143;display:grid;grid-template-columns:1fr 1fr;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -3px 15px #0002}.mobile-contact a{color:#fff;padding:17px 8px;text-align:center;font-weight:700;font-size:.8rem}.mobile-contact a:last-child{background:#edc67d;color:#0d2143}.quote-form{padding:22px}.core-service{padding:24px}.area-links{grid-template-columns:1fr}.nav-logo{font-size:1rem}.nav-cta .btn{font-size:.8rem!important;padding:8px 12px!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 #quote{scroll-margin-top:90px}

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="title desc">
+  <title id="title">شعار صنايعي كور</title>
+  <desc id="desc">رمز هندسي يجمع ماكينة الكور ومنشار قطع الخرسانة</desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Concrete saw: blade, cutting teeth, casing and handle -->
+    <circle cx="372" cy="374" r="151" fill="#0d2143"/>
+    <g fill="#e6b96c">
+      <rect x="348" y="202" width="48" height="68" rx="10" transform="rotate(0 372 374)"/>
+      <rect x="348" y="202" width="48" height="68" rx="10" transform="rotate(60 372 374)"/>
+      <rect x="348" y="202" width="48" height="68" rx="10" transform="rotate(120 372 374)"/>
+      <rect x="348" y="202" width="48" height="68" rx="10" transform="rotate(180 372 374)"/>
+      <rect x="348" y="202" width="48" height="68" rx="10" transform="rotate(240 372 374)"/>
+      <rect x="348" y="202" width="48" height="68" rx="10" transform="rotate(300 372 374)"/>
+    </g>
+    <circle cx="372" cy="374" r="52" fill="#e43a15"/>
+    <circle cx="372" cy="374" r="29" fill="#e6b96c"/>
+    <circle cx="372" cy="374" r="12" fill="#0d2143"/>
+    <path d="M336 244h112c37 0 65 19 83 48l22 36h-86l-18-29H345z" fill="#0d2143"/>
+    <path d="M436 218h86l25 48h-31l-18-21h-62z" fill="#e43a15"/>
+    <path d="M519 328h48l28 62h-73z" fill="#e43a15"/>
+    <path d="M487 420h86l-18 66h-76z" fill="#0d2143"/>
+    <!-- Core drill: stand, motor and diamond barrel -->
+    <path d="M74 139h44v338H74zM52 477h124v47H52z" fill="#0d2143"/>
+    <path d="M101 177h126c18 0 32 14 32 32v49H101z" fill="#e43a15"/>
+    <path d="M83 212h198v52H83z" fill="#0d2143"/>
+    <path d="M157 264h72v48h-72z" fill="#e43a15"/>
+    <path d="M143 310h100v152c0 15-12 27-27 27h-46c-15 0-27-12-27-27z" fill="#e6b96c"/>
+    <path d="M143 458h100v30h-100z" fill="#0d2143"/>
+    <path d="M164 488h58v28h-58z" fill="#e43a15"/>
+    <path d="M109 140v-37h72v37" stroke="#0d2143" stroke-width="28"/>
+    <path d="M133 342h-26M133 388h-26M133 434h-26" stroke="#e43a15" stroke-width="13"/>
+    <!-- Framing arc brings the two services into one signature mark -->
+    <path d="M65 536c68 56 157 82 248 72 98-10 183-61 238-139" stroke="#e43a15" stroke-width="22"/>
+  </g>
+</svg>
