@@ -5,7 +5,11 @@ export const GET: APIRoute = async ({ site }) => {
     .filter(path => !path.includes('[') && path !== './404.astro')
     .map(path => path.replace(/^\.\//, '/').replace(/(?:index)?\.astro$/, '').replace(/\/?$/, '/'));
   const posts = await getCollection('blog');
+  const postLastModified = new Map(posts.map(post => [
+    `/مقالات/${post.id}/`,
+    (post.data.updatedDate || post.data.date).toISOString().slice(0, 10),
+  ]));
   const urls = [...new Set([...pages, ...posts.map(post => `/مقالات/${post.id}/`)])];
-  const xml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(path => `<url><loc>${new URL(path, site).href.replaceAll('&', '&amp;')}</loc></url>`).join('')}</urlset>`;
+  const xml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(path => `<url><loc>${new URL(path, site).href.replaceAll('&', '&amp;')}</loc>${postLastModified.has(path) ? `<lastmod>${postLastModified.get(path)}</lastmod>` : ''}</url>`).join('')}</urlset>`;
   return new Response(xml, { headers: { 'Content-Type': 'application/xml; charset=utf-8' } });
 };

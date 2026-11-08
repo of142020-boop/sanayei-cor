@@ -13,6 +13,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 const related = (await getCollection("blog")).filter(post => post.id !== entry.id && post.data.tags.some(tag => entry.data.tags.includes(tag))).slice(0,3);
+const articleImage = entry.data.image ? new URL(entry.data.image, Astro.site).href : undefined;
 ---
 
 <Layout 
@@ -90,5 +91,5 @@ const related = (await getCollection("blog")).filter(post => post.id !== entry.i
       font-weight: 700;
     }
   </style>
-<script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'BlogPosting',headline:entry.data.title,description:entry.data.description,datePublished:entry.data.date.toISOString(),dateModified:(entry.data.updatedDate || entry.data.date).toISOString(),inLanguage:'ar-EG',mainEntityOfPage:new URL(Astro.url.pathname,Astro.site).href,author:{'@type':'Organization',name:entry.data.author,url:new URL('/نبذة-عنا/',Astro.site).href},publisher:{'@id':`${Astro.site}#business`}})} />
+<script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'BlogPosting',headline:entry.data.title,description:entry.data.description,datePublished:entry.data.date.toISOString(),dateModified:(entry.data.updatedDate || entry.data.date).toISOString(),inLanguage:'ar-EG',mainEntityOfPage:new URL(Astro.url.pathname,Astro.site).href,author:{'@type':'Organization',name:entry.data.author,url:new URL('/نبذة-عنا/',Astro.site).href},publisher:{'@id':`${Astro.site}#business`},image:articleImage,keywords:entry.data.tags.join(', '),about:entry.data.tags.map(name => ({'@type':'Thing',name}))})} />
 </Layout>

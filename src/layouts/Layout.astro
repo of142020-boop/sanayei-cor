@@ -46,6 +46,8 @@ const navLinks = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="author" content="صنايعي كور" />
+    <meta name="theme-color" content="#e43a15" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
@@ -83,7 +85,7 @@ const navLinks = [
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "LocalBusiness",
+          "@type": ["LocalBusiness", "ProfessionalService"],
           "@id": `${siteUrl}/#business`,
           "name": "صنايعي كور",
           "alternateName": "Sanayei Cor",
@@ -94,6 +96,14 @@ const navLinks = [
           "priceRange": "$$",
           "currenciesAccepted": "EGP",
           "paymentAccepted": "Cash",
+          "knowsAbout": [
+            "تخريم الخرسانة بالكور دريل",
+            "قص الخرسانة بالمنشار الماسي",
+            "فتحات التكييف والتهوية",
+            "فتحات الغاز والشفاطات",
+            "فتحات السباكة والصرف",
+            "تزريع أشاير الحديد"
+          ],
           "areaServed": [
             { "@type": "City", "name": "القاهرة" },
             { "@type": "City", "name": "الجيزة" },
@@ -137,7 +147,8 @@ const navLinks = [
           "url": siteUrl,
           "name": "صنايعي كور",
           "inLanguage": "ar-EG",
-          "description": "الموقع الرسمي لصنايعي كور المتخصصين في تخريم وقص الخرسانة في مصر"
+          "description": "الموقع الرسمي لصنايعي كور المتخصصين في تخريم وقص الخرسانة في مصر",
+          "publisher": { "@id": `${siteUrl}/#business` }
         },
         {
           "@type": "WebPage",
@@ -147,7 +158,8 @@ const navLinks = [
           "description": description,
           "inLanguage": "ar-EG",
           "isPartOf": { "@id": `${siteUrl}/#website` },
-          "about": { "@id": `${siteUrl}/#business` }
+          "about": { "@id": `${siteUrl}/#business` },
+          "primaryImageOfPage": { "@type": "ImageObject", "contentUrl": `${siteUrl}${socialImage}` }
         }
       ]
     })} />
