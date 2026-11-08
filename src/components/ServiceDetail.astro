@@ -9,10 +9,12 @@ if (!service) throw new Error(`Unknown service: ${Astro.props.slug}`);
 const related = services.filter(item => item.slug !== service.slug).slice(0,3);
 const url = new URL(`/خدماتنا/${service.slug}/`, Astro.site).href;
 const sawGallery = service.slug === 'قص-الخرسانة-بالمنشار' ? [
-  { src: '/images/work-gallery/work-04-wall-saw-water.webp', alt: 'منشار جدار خرساني أثناء التجهيز' },
-  { src: '/images/work-gallery/work-05-wall-saw-concrete.webp', alt: 'قرص منشار ماسي لقص الخرسانة' },
-  { src: '/images/work-gallery/work-08-wall-saw-jobsite.webp', alt: 'منشار سكة لقص الخرسانة في موقع عمل' },
-  { src: '/images/work-gallery/work-10-hydraulic-concrete-saw.webp', alt: 'منشار خرساني هيدروليكي لتجهيز القص' },
+  { src: '/images/work-gallery/work-25-diamond-wall-saw-rail.webp', alt: 'منشار حائط ماسي على سكة لقص الخرسانة' },
+  { src: '/images/work-gallery/work-19-wire-saw-industrial.webp', alt: 'منشار سلك ماسي داخل موقع صناعي' },
+  { src: '/images/work-gallery/work-20-wire-saw-rail.webp', alt: 'معدات قص خرسانة بالسلك الماسي على مسار' },
+  { src: '/images/work-gallery/work-21-wire-saw-cutting.webp', alt: 'تجهيز قص خرساني بالسلك الماسي' },
+  { src: '/images/work-gallery/work-23-wire-saw-demolition.webp', alt: 'معدات قص خرسانة في موقع هدم' },
+  { src: '/images/work-gallery/work-24-wire-saw-outdoor.webp', alt: 'منشار سلك ماسي في موقع خارجي' },
 ] : [];
 ---
 <Layout title={`${service.name} | صنايعي كور — اتصل 01271940742`} description={`${service.description} اتصل الآن على 01271940742 لطلب عرض سعر.`} navbarStyle="solid">
