@@ -17,10 +17,5 @@
         { "key": "Cache-Control", "value": "public, max-age=2592000, immutable" }
       ]
     }
-  ],
-  "redirects": [
-    { "source": "/تخريم-خرسانة/", "destination": "/خدماتنا/تخريم-خرسانة/", "permanent": true },
-    { "source": "/قص-خرسانة/", "destination": "/خدماتنا/قص-الخرسانة-بالمنشار/", "permanent": true },
-    { "source": "/خدماتنا/فتحات-غاز/", "destination": "/خدماتنا/فتحات-الغاز-والشفاطات/", "permanent": true }
   ]
 }
