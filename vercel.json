@@ -19,8 +19,8 @@
     }
   ],
   "redirects": [
-    { "source": "/%D8%AA%D8%AE%D8%B1%D9%8A%D9%85-%D8%AE%D8%B1%D8%B3%D8%A7%D9%86%D8%A9", "destination": "/خدماتنا/تخريم-خرسانة/", "permanent": true },
-    { "source": "/%D9%82%D8%B5-%D8%AE%D8%B1%D8%B3%D8%A7%D9%86%D8%A9", "destination": "/خدماتنا/قص-الخرسانة-بالمنشار/", "permanent": true },
-    { "source": "/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%86%D8%A7/%D9%81%D8%AA%D8%AD%D8%A7%D8%AA-%D8%BA%D8%A7%D8%B2", "destination": "/خدماتنا/فتحات-الغاز-والشفاطات/", "permanent": true }
+    { "source": "/تخريم-خرسانة/", "destination": "/خدماتنا/تخريم-خرسانة/", "permanent": true },
+    { "source": "/قص-خرسانة/", "destination": "/خدماتنا/قص-الخرسانة-بالمنشار/", "permanent": true },
+    { "source": "/خدماتنا/فتحات-غاز/", "destination": "/خدماتنا/فتحات-الغاز-والشفاطات/", "permanent": true }
   ]
 }
