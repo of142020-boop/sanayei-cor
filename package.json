@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "gsc:setup": "node scripts/gsc-setup.mjs"
   },
   "dependencies": {
     "@fontsource/cairo": "^5.3.0",
