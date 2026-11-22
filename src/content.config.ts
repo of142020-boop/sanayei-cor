@@ -11,6 +11,10 @@ const blogCollection = defineCollection({
     author: z.string().default('فريق صنايعي كور'),
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    faqs: z.array(z.object({
+      question: z.string(),
+      answer: z.string(),
+    })).default([]),
   }),
 });
 

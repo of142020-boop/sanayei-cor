@@ -92,4 +92,5 @@ const articleImage = entry.data.image ? new URL(entry.data.image, Astro.site).hr
     }
   </style>
 <script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'BlogPosting',headline:entry.data.title,description:entry.data.description,datePublished:entry.data.date.toISOString(),dateModified:(entry.data.updatedDate || entry.data.date).toISOString(),inLanguage:'ar-EG',mainEntityOfPage:new URL(Astro.url.pathname,Astro.site).href,author:{'@type':'Organization',name:entry.data.author,url:new URL('/نبذة-عنا/',Astro.site).href},publisher:{'@id':`${Astro.site}#business`},image:articleImage,keywords:entry.data.tags.join(', '),about:entry.data.tags.map(name => ({'@type':'Thing',name}))})} />
+{entry.data.faqs.length > 0 && <script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:entry.data.faqs.map(faq => ({'@type':'Question',name:faq.question,acceptedAnswer:{'@type':'Answer',text:faq.answer}}))})} />}
 </Layout>
