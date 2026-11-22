@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "gsc:setup": "node scripts/gsc-setup.mjs"
+    "gsc:setup": "node scripts/gsc-setup.mjs",
+    "gsc:inspect": "node scripts/gsc-inspect-sitemap.mjs"
   },
   "dependencies": {
     "@fontsource/cairo": "^5.3.0",
