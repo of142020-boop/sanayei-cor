@@ -2,30 +2,33 @@
 interface GalleryImage {
   src: string;
   alt: string;
+  caption?: string;
 }
 
 interface Props {
   title?: string;
   description?: string;
   images: GalleryImage[];
+  altBg?: boolean;
 }
 
 const {
-  title = 'معدات الكور والقص أثناء التنفيذ',
-  description = 'لقطات توضيحية لمعدات الكور دريل والمنشار الماسي في مواقع العمل.',
+  title = 'معدات الكور دريل والمنشار الماسي في مواقع التنفيذ',
+  description = 'لقطات ميدانية لمعدات القطع الماسي والتخريم الرطب في الجدران والأسقف الخرسانية المسلحة.',
   images,
+  altBg = true,
 } = Astro.props;
 ---
 
-<section class="section work-gallery" aria-label={title}>
+<section class={altBg ? 'section-alt' : 'section-surface'} aria-label={title}>
   <div class="container">
     <div class="section-header">
-      <span class="section-label">معدات التنفيذ</span>
+      <span class="section-label">تجهيزات ميدانية</span>
       <h2>{title}</h2>
       <p>{description}</p>
     </div>
     <div class="work-gallery-grid">
-      {images.map((image, index) => (
+      {images.map((image) => (
         <figure class="work-gallery-card">
           <img
             src={image.src}
@@ -35,6 +38,7 @@ const {
             loading="lazy"
             decoding="async"
           />
+          <figcaption>{image.caption || image.alt}</figcaption>
         </figure>
       ))}
     </div>

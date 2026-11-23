@@ -2,76 +2,342 @@
 import Layout from '../layouts/Layout.astro';
 import QuoteRequest from '../components/QuoteRequest.astro';
 import WorkGallery from '../components/WorkGallery.astro';
+
 const services = [
-  { n: '01', title: 'تخريم خرسانة بالكور دريل', href: 'تخريم-خرسانة', text: 'فتحات دائرية لمرور المواسير والكابلات في الحوائط والأسقف الخرسانية، بالمقاس المناسب للتنفيذ.' },
-  { n: '02', title: 'فتحات التكييف والتهوية', href: 'فتحات-تكييف', text: 'فتحات مسارات مواسير التكييف والتهوية، مع تحديد المسار والميل المطلوب مع فني التركيب.' },
-  { n: '03', title: 'فتحات الغاز والشفاطات', href: 'فتحات-الغاز-والشفاطات', text: 'تخريم لتمديدات الغاز ومداخن السخانات والشفاطات طبقًا للمقاس والموقع المطلوبين من جهة التركيب.' },
-  { n: '04', title: 'فتحات السباكة والصرف', href: 'فتحات-سباكة', text: 'فتحات عبور مواسير المياه والصرف؛ يتحدد القطر بناءً على الماسورة والعزل والخلوص المطلوب.' },
-  { n: '05', title: 'قص الخرسانة بالمنشار', href: 'قص-الخرسانة-بالمنشار', text: 'قص مستقيم لفتحات الأبواب والنوافذ وأعمال التعديل، بعد مراجعة واعتماد الجزء المطلوب قصه.' },
-  { n: '06', title: 'تزريع أشاير الحديد', href: 'تزريع-اشاير-حديد', text: 'تجهيز ثقوب التثبيت والتزريع وفق مواصفات المادة المستخدمة والتصميم المعتمد للمشروع.' },
-  { n: '07', title: 'تركيب وتأسيس الشفاطات', href: 'تركيب-وتأسيس-شفاطات', text: 'تركيب شفاط مطبخ أو حمام وتأسيس مسار الدكت والمدخنة، مع مراجعة مخرج الهواء وفتحة الكور عند الحاجة.' },
+  { n: '01', title: 'تخريم خرسانة وفتحات كور', href: 'تخريم-خرسانة', text: 'فتح كور دائري بأقطار 1 إلى 12 بوصة في الحوائط والأسقف الفلات سلاب للتكييف والسباكة والغاز والكابلات.' },
+  { n: '02', title: 'قص الخرسانة بالمنشار الماسي', href: 'قص-الخرسانة-بالمنشار', text: 'قص مستقيم لفتحات الأبواب والنوافذ والسلالم وتعديلات الجدران بالمنشار الجداري ومنشار السلك بدون اهتزازات.' },
+  { n: '03', title: 'فتحات التكييف والتهوية', href: 'فتحات-تكييف', text: 'تخريم مسارات مواسير النحاس والعزل وصرف التكييف السبليت والمركزي والكونسيلد بالميل الهندسي الصحيح.' },
+  { n: '04', title: 'فتحات الغاز ومداخن السخانات', href: 'فتحات-الغاز-والشفاطات', text: 'تجهيز فتحات مواسير الغاز الطبيعي والهواية ومدخنة السخان بمقاسات مطابقة لمعاينة شركة الغاز دون كسر السيراميك.' },
+  { n: '05', title: 'تركيب وتأسيس الشفاطات', href: 'تركيب-وتأسيس-شفاطات', text: 'تركيب شفاط مطبخ بمدخنة وبلت إن وشباك وزجاج، وشفاط حمام سقفي مخفي مع تأسيس الدكت وفتحة الكور.' },
+  { n: '06', title: 'فتحات السباكة والصرف', href: 'فتحات-سباكة', text: 'فتحات سقف وجدار دقيقة لمواسير المياه والصرف 2 إلى 6 بوصة مع مراعاة خلوص الجلبة والعزل المائي.' },
+  { n: '07', title: 'تزريع أشاير الحديد بالإيبوكسي', href: 'تزريع-اشاير-حديد', text: 'تخريم وتنظيف وتثبيت أشاير الحديد بمواد Hilti وSika وCMB المعتمدة هندسيًا للكمرات والسلالم والتوسعات.' },
 ];
-const areas = [ ['القاهرة', 'مدينة نصر، مصر الجديدة، المعادي وحلوان'], ['الجيزة', 'الهرم، فيصل، الدقي والمهندسين'], ['التجمع-الخامس', 'التجمع الخامس والقاهرة الجديدة'], ['اكتوبر-وزايد', '6 أكتوبر والشيخ زايد'], ['الإسكندرية', 'تواصل لتأكيد التغطية والموعد'] ];
-const faqs = [
-  ['ما الفرق بين الكور والتخريم بالشاكوش؟', 'الكور دريل يستخدم رأسًا أسطوانيًا ماسيًا لإخراج فتحة دائرية، بينما يعتمد الشاكوش على الطرق والتكسير. اختيار المعدة يتوقف على الخامة والمقاس وموقع العمل.'],
-  ['كم سعر فتحة الكور؟', 'يتحدد السعر حسب قطر الفتحة وعمقها ونوع الخامة وعدد الفتحات ومكان الموقع وسهولة الوصول إليه. أرسل صورًا والمقاسات المطلوبة للحصول على تقدير، ويُؤكد السعر بعد مراجعة التفاصيل.'],
-  ['هل يمكن تخريم سقف أو كمرة خرسانية؟', 'أي فتحة في عنصر إنشائي تحتاج مراجعة مهندس إنشائي واعتماد مكانها قبل التنفيذ. لا يكفي استخدام الكور وحده لضمان سلامة العنصر أو السماح بقطع حديد التسليح.'],
-  ['ما مقاس فتحة الغاز أو التكييف؟', 'لا يوجد مقاس واحد يصلح لكل الحالات. يُحدد القطر والمكان حسب مواصفات الجهاز والماسورة ومتطلبات شركة الغاز أو فني التكييف قبل بدء التخريم.'],
-  ['هل أحتاج تجهيز المكان قبل وصول صنايعي الكور؟', 'أرسل صور الجهتين إن أمكن، وحدد عدد الفتحات ومقاساتها وارتفاعها. أبعد الأثاث عن موضع العمل واتفق على مصدر الكهرباء والمياه وطريقة تجميع مخلفات الحفر.'],
+
+const featuredAreas = [
+  { slug: 'القاهرة', title: 'القاهرة', text: 'مدينة نصر، مصر الجديدة، المعادي، الشروق، والعاصمة الإدارية' },
+  { slug: 'التجمع-الخامس', title: 'التجمع الخامس والقاهرة الجديدة', text: 'الرحاب، مدينتي، اللوتس، الأندلس، وبيت الوطن' },
+  { slug: 'الجيزة', title: 'الجيزة', text: 'المهندسين، الدقي، الهرم، فيصل، وحدائق الأهرام' },
+  { slug: 'اكتوبر-وزايد', title: '6 أكتوبر والشيخ زايد', text: 'الشيخ زايد، حدائق أكتوبر، والمناطق الصناعية' },
+  { slug: 'الإسكندرية', title: 'الإسكندرية وبرج العرب', text: 'سموحة، كفر عبده، لوران، وبرج العرب الجديدة' },
+  { slug: 'الشرقية', title: 'الشرقية والعاشر من رمضان', text: 'المنطقة الصناعية بالعاشر من رمضان والزقازيق' },
+];
+
+const featuredGuides = [
+  { slug: 'core-drilling-guide', title: 'دليل الكور دريل للخرسانة', text: 'الاستخدامات الميدانية، الأقطار، ومتى يلزم اعتماد مهندس إنشائي قبل التخريم.' },
+  { slug: 'core-drilling-uses', title: 'مقاسات فتحات التكييف والغاز والسباكة', text: 'الفرق بين قطر الماسورة وقطر فتحة الكور المطلوبة للعزل والجلبة.' },
+  { slug: 'concrete-cutting-types', title: 'الكور دريل أم المنشار الماسي؟', text: 'كيف تختار المعدة المناسبة بين الفتحات الدائرية وخطوط القص المستقيمة.' },
+  { slug: 'concrete-cutting-prices', title: 'مقارنة عروض أسعار القص وتزريع الأشاير', text: 'كيف تُقاس أمتار القص الطولي وتُفصل بنود الرفع ومواد التزريع.' },
+  { slug: 'install-kitchen-exhaust', title: 'دليل تركيب شفاط المطبخ والمدخنة', text: 'مسار الدكت، مقاس فتحة الكور، والفرق بين الشفاط بمدخنة وفلتر الكربون.' },
+  { slug: 'bathroom-exhaust-guide', title: 'أفضل شفاط حمام سقفي ومخفي', text: 'مقارنة KDK وتوشيبا وفريش وطريقة تأسيس مخرج التهوية في السقف.' },
+];
+
+const faqs: [string, string][] = [
+  ['ما الفرق بين تخريم الخرسانة بالكور والتكسير بالشاكوش؟', 'ماكينة الكور دريل تستخدم تاجًا أسطوانيًا ماسيًا مبردًا بالماء لإخراج فتحة دائرية صافية الحواف بدون طرق أو اهتزازات، مما يحمي التشطيبات والسيراميك والخرسانة المحيطة من الشروخ، بخلاف الشاكوش أو الهيلتي.'],
+  ['كم سعر فتحة الكور في مصر؟', 'يتراوح السعر الاسترشادي لفتحة الكور بين 200 و350 ج.م لأقطار 1–2 بوصة، و250–400 ج.م لأقطار 3–4 بوصة، و350–550 ج.م لأقطار 5–6 بوصة، وتُؤكد التكلفة النهائية حسب سُمك الخرسانة والعدد والموقع.'],
+  ['هل يمكن عمل فتحات كور في السقف أو الكمرة الخرسانية؟', 'نعم فنيًا، لكن أي فتحة في عنصر إنشائي حامل (سقف فلات سلاب، كمرة، أو عمود) تستلزم مراجعة واعتماد مهندس إنشائي لموضع الفتحة قبل التنفيذ لضمان عدم الإضرار بحديد التسليح.'],
+  ['هل تنفذون قص الخرسانة لفتح أبواب وشبابيك بالمنشار الماسي؟', 'نعم، نوفر منشار الحائط الماسي (Wall Saw) ومنشار السلك الماسي لقص فتحات الأبواب والنوافذ والسلالم باستقامة تامة، ويُحسب السعر بالمتر الطولي لخط القص حسب سُمك الخرسانة.'],
+  ['هل تشمل خدماتكم تركيب الشفاطات وعمل فتحة المدخنة معًا؟', 'نعم، ننفذ تركيب شفاط المطبخ والحمام وتأسيس مسار الدكت مع عمل فتحة الكور الدائرية في نفس الزيارة دون كسر السيراميك أو إتلاف الديكور.'],
 ];
 ---
-<Layout title="صنايعي كور | فتحات كور وتخريم وقص الخرسانة — 01271940742" description="صنايعي كور مقاول فتحات كور وتخريم وقص الخرسانة بالكور دريل والمنشار الماسي في القاهرة والجيزة: تكييف وغاز وسباكة وشفاطات. اتصل 01271940742 لعرض سعر واضح.">
-  <section class="core-hero" aria-labelledby="hero-heading">
-    <div class="container core-hero-grid">
+
+<Layout
+  title="صنايعي كور | مقاول فتحات كور وتخريم وقص خرسانة 01271940742"
+  description="صنايعي كور شركة كور ومقاول فتحات كور وتخريم وقص الخرسانة بالمنشار الماسي في القاهرة والجيزة ومصر: تكييف وغاز وسباكة وشفاطات. اتصل 01271940742."
+  faqs={faqs}
+>
+  <section class="site-hero" aria-labelledby="hero-heading">
+    <div class="container hero-grid">
       <div>
-        <span class="eyebrow">فتحات مدروسة. تنفيذ على المقاس.</span>
-        <h1 id="hero-heading">صنايعي كور<br /><span>لفتحات الكور وتخريم الخرسانة<br />في القاهرة والجيزة — 01271940742</span></h1>
-        <p class="hero-lead">من فتحة تكييف في شقتك إلى تمديدات مشروعك. صنايعي كور مقاول فتحات كور لتخريم الغاز والسباكة والتهوية بالكور دريل، وقص الخرسانة بالمنشار في القاهرة والجيزة والمناطق الموضحة بالموقع.</p>
-        <div class="core-actions">
-          <a href="tel:+201271940742" class="btn btn-gold">اتصل بصنايعي كور <bdi>01271940742</bdi></a>
-          <a href="#quote" class="btn btn-ghost">اطلب عرض سعر ←</a>
+        <span class="hero-eyebrow">تخريم وقص خرسانة مسلحة بالمعدات الماسية — مصر</span>
+        <h1 id="hero-heading">
+          صنايعي كور
+          <span>مقاول فتحات كور وتخريم وقص الخرسانة — <bdi dir="ltr">01271940742</bdi></span>
+        </h1>
+        <p class="hero-lead">
+          شركة كور ومقاول متخصص في فتحات الكور وتخريم الخرسانة المسلحة بالكور دريل الماسي، وقص الجدران والأسقف بالمنشار الماسي، وتأسيس فتحات التكييف والغاز والسباكة والشفاطات وتزريع أشاير الحديد في القاهرة والجيزة والمدن الجديدة ومحافظات مصر.
+        </p>
+        <div class="actions-row">
+          <a href="tel:+201271940742" class="btn btn-primary btn-lg">اتصل الآن <bdi dir="ltr">01271940742</bdi></a>
+          <a href="#quote" class="btn btn-outline-light btn-lg">اطلب تسعيرًا فوريًا ←</a>
         </div>
-        <div class="hero-specs"><span>فتحات حوائط وأسقف</span><span>غاز · تكييف · سباكة</span><span>تحديد المقاس قبل التنفيذ</span></div>
-      </div>
-      <div class="technical-panel">
-        <div class="panel-top"><span>علامة صنايعي كور</span><span>CORE / CUT</span></div>
-        <div class="brand-showcase">
-          <img src="/images/sanayei-cor-logo.png" width="512" height="512" alt="شعار صنايعي كور: ماكينة كور ومنشار لقص الخرسانة" fetchpriority="high" />
+        <div class="hero-metrics">
+          <div class="hero-metric">
+            <strong>1 – 12 بوصة</strong>
+            <span>تيجان كور ماسية للحوائط والأسقف</span>
+          </div>
+          <div class="hero-metric">
+            <strong>قص حتى 50 سم</strong>
+            <span>منشار جداري ومنشار سلك ماسي</span>
+          </div>
+          <div class="hero-metric">
+            <strong>بدون تكسير أو شروخ</strong>
+            <span>تبريد مائي يحمي السيراميك والدهانات</span>
+          </div>
         </div>
-        <div class="panel-caption"><strong>معدات للكور والقص الماسي</strong><p>تخريم دقيق للخرسانة وقص بالمنشار حسب متطلبات موقعك.</p></div>
-        <a href="/خدماتنا/تخريم-خرسانة/" class="panel-link">تعرّف على خدمة تخريم الخرسانة ←</a>
       </div>
+
+      <figure class="hero-frame">
+        <div class="hero-frame-bar">
+          <span>CORE DRILLING / DIAMOND SAW</span>
+          <span>EGYPT · 01271940742</span>
+        </div>
+        <img
+          src="/images/work-gallery/work-22-hilti-core-drill-wall.webp"
+          width="1600"
+          height="1067"
+          alt="ماكينة كور دريل ماسي مثبتة على حائط خرساني مسلح لتنفيذ فتحات دقيقة"
+          fetchpriority="high"
+        />
+        <figcaption class="hero-frame-footer">
+          <p>تثبيت ميكانيكي دقيق لماكينة الكور دريل لضمان فتحة مستوية بدون انحراف أو شروخ.</p>
+          <a href="/خدماتنا/تخريم-خرسانة/">تفاصيل التخريم ←</a>
+        </figcaption>
+      </figure>
     </div>
   </section>
-  <div class="brief-strip"><div class="container"><strong>محتاج فتحة كور؟</strong><span>أرسل صورة + المنطقة + المقاس + عدد الفتحات</span><a href="#quote">جهّز طلبك في دقيقة ←</a></div></div>
+
+  <div class="brief-strip">
+    <div class="container brief-strip-inner">
+      <strong>تحتاج فتحة كور أو قص خرسانة اليوم؟</strong>
+      <span>حدد القطر أو أبعاد القص والمنطقة واحصل على تسعير واضح وتأكيد فوري للموعد.</span>
+      <a class="text-link" href="/اسعار-الخدمات/">جدول الأسعار الاسترشادية ←</a>
+    </div>
+  </div>
+
   <section class="section" id="services" aria-labelledby="services-h">
     <div class="container">
-      <div class="section-heading-row"><div><span class="section-label">الخدمة المناسبة لشغلك</span><h2 id="services-h">خدمات الكور والتخريم<br /><span class="text-primary">من أول فتحة لحد تسليم الشغل</span></h2></div><a class="text-link" href="/خدماتنا/">كل الخدمات ←</a></div>
-      <div class="grid-3">{services.map(service => <a class="core-service" href={`/خدماتنا/${service.href}/`}><span class="service-number">{service.n}</span><h3>{service.title}</h3><p>{service.text}</p><span class="text-link">تفاصيل الخدمة ←</span></a>)}</div>
+      <div class="section-heading-row">
+        <div>
+          <span class="section-label">الأقسام والخدمات الهندسية</span>
+          <h2 id="services-h">خدمات فتحات الكور وقص الخرسانة وتأسيس الشفاطات</h2>
+        </div>
+        <a class="text-link" href="/خدماتنا/">دليل الخدمات الكامل ←</a>
+      </div>
+      <div class="grid-3">
+        {services.map(service => (
+          <a class="service-card" href={`/خدماتنا/${service.href}/`}>
+            <span class="service-num">{service.n}</span>
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
+            <span class="text-link">المواصفات والتفاصيل ←</span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
+
+  <section class="section-surface" aria-labelledby="specs-preview-h">
+    <div class="container">
+      <div class="section-heading-row">
+        <div>
+          <span class="section-label">المقاسات والنطاقات الاسترشادية</span>
+          <h2 id="specs-preview-h">دليل سريع لأقطار فتحات الكور وأسعار التنفيذ في مصر</h2>
+        </div>
+        <a class="text-link" href="/اسعار-الخدمات/">صفحة الأسعار الكاملة ←</a>
+      </div>
+      <div class="table-wrap">
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th scope="col">نوع العمل / قطر الفتحة</th>
+              <th scope="col">الاستخدام الميداني الشائع</th>
+              <th scope="col">النطاق الاسترشادي (ج.م)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>فتحة كور 1 – 2 بوصة (25–50 مم)</strong></td>
+              <td>مواسير تكييف سبليت، كابلات كهرباء، وتغذية مياه</td>
+              <td>200 – 350 ج.م / فتحة</td>
+            </tr>
+            <tr>
+              <td><strong>فتحة كور 3 – 4 بوصة (75–100 مم)</strong></td>
+              <td>مواسير الصرف الصحي، هواية الغاز الطبيعي، وتهوية الحمام</td>
+              <td>250 – 400 ج.م / فتحة</td>
+            </tr>
+            <tr>
+              <td><strong>فتحة كور 5 – 6 بوصة (125–150 مم)</strong></td>
+              <td>مدخنة سخان الغاز، دكت شفاط المطبخ البلت إن والهرمي</td>
+              <td>350 – 550 ج.م / فتحة</td>
+            </tr>
+            <tr>
+              <td><strong>فتحة كور 7 – 12 بوصة (180–300 مم)</strong></td>
+              <td>دكت التكييف المركزي، صواعد المشروعات، وفتحات الأسقف الكبرى</td>
+              <td>600 – 1,200+ ج.م حسب العمق</td>
+            </tr>
+            <tr>
+              <td><strong>قص الخرسانة بالمنشار الماسي</strong></td>
+              <td>فتح أبواب وشبابيك وسلالم وتقطيع جدران وأسقف مسلحة</td>
+              <td>500 – 1,300 ج.م / متر طولي</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-caption">الأسعار استرشادية لطلبات السوق المصري وتُؤكد نهائيًا حسب سُمك الخرسانة، كثافة حديد التسليح، العدد، والموقع، مع خصومات للكميات والمشروعات.</p>
+    </div>
+  </section>
+
   <WorkGallery
-    title="معدات الكور والقص في مواقع التنفيذ"
-    description="صور توضيحية لمعدات الكور دريل والمنشار الماسي المستخدمة في أعمال التخريم والقص."
+    title="معدات الكور دريل والمنشار الماسي في مواقع التنفيذ"
+    description="نماذج حقيقية لمعدات التخريم الماسي والمنشار الجداري ومنشار السلك المستخدمة في أعمال الخرسانة المسلحة."
     images={[
-      { src: '/images/work-gallery/work-01-core-drilling-wall.webp', alt: 'تخريم حائط خرساني بالكور دريل' },
-      { src: '/images/work-gallery/work-22-hilti-core-drill-wall.webp', alt: 'كور دريل احترافي مثبت على حائط خرساني' },
-      { src: '/images/work-gallery/work-25-diamond-wall-saw-rail.webp', alt: 'منشار حائط ماسي على سكة لقص الخرسانة' },
-      { src: '/images/work-gallery/work-20-wire-saw-rail.webp', alt: 'منشار سلك ماسي على مسار في موقع عمل' },
-      { src: '/images/work-gallery/work-23-wire-saw-demolition.webp', alt: 'معدات قص خرسانة بالسلك الماسي في موقع هدم' },
+      { src: '/images/work-gallery/work-01-core-drilling-wall.webp', alt: 'تخريم حائط خرساني بالكور دريل', caption: 'تخريم جدار خرساني بالكور دريل لمرور التمديدات' },
+      { src: '/images/work-gallery/work-06-core-drilling-floor.webp', alt: 'تخريم سقف وأرضية خرسانية بالكور دريل', caption: 'فتح كور رأسي في سقف فلات سلاب لمواسير الصرف' },
+      { src: '/images/work-gallery/work-25-diamond-wall-saw-rail.webp', alt: 'منشار حائط ماسي على مسار لقص الخرسانة', caption: 'قص جدار خرساني بمنشار حائط ماسي على سكة حديدية' },
+      { src: '/images/work-gallery/work-14-core-drill-vent.webp', alt: 'تجهيز فتحة دكت شفاط وتهوية بالكور دريل', caption: 'تنفيذ فتحة دائرية لمدخنة شفاط مطبخ بدون تكسير' },
+      { src: '/images/work-gallery/work-20-wire-saw-rail.webp', alt: 'منشار سلك ماسي لقص القطاعات الخرسانية السميكة', caption: 'منشار سلك ماسي للقطاعات والكمرات الخرسانية الكثيفة' },
+      { src: '/images/work-gallery/work-17-core-hole-wall.webp', alt: 'فتحة كور دائرية نظيفة في حائط خرساني مسلح', caption: 'نتيجة فتحة كور دائرية صافية الحواف جاهزة للتركيب' },
     ]}
   />
-  <section class="section-alt" aria-labelledby="choose-h"><div class="container core-guide-grid">
-    <div><span class="section-label">قبل ما تبدأ</span><h2 id="choose-h">صنايعي كور لتخريم الخرسانة<br />يبدأ بفهم المطلوب</h2><p class="spaced-copy">لو بتدور على فني كور أو مقاول تخريم خرسانة في القاهرة أو الجيزة، وضوح التفاصيل من البداية يساعدك تقارن عروض الأسعار وتجهّز الموقع صح.</p><a href="/خدماتنا/تخريم-خرسانة/" class="text-link">دليل خدمة تخريم الخرسانة ←</a></div>
-    <div class="check-list"><div><b>01 / مقاس مناسب للتركيب</b><p>راجع قطر الماسورة والخلوص والميل مع فني التركيب، بدل توسيع الفتحة بعد التشطيب.</p></div><div><b>02 / مراجعة مكان الفتحة</b><p>تأكد من مسارات الكهرباء والمياه، واطلب اعتماد المهندس قبل العمل في العناصر الإنشائية.</p></div><div><b>03 / اتفاق واضح على التكلفة</b><p>وضّح العدد والعمق والخامة والارتفاع، وهل السعر يشمل الانتقال وتجميع مخلفات الحفر.</p></div></div>
-  </div></section>
-  <section class="section" aria-labelledby="quick-answers-h"><div class="container"><div class="section-header"><span class="section-label">إجابات واضحة قبل الاتصال</span><h2 id="quick-answers-h">أسئلة سريعة عن الكور وتخريم الخرسانة</h2><p>هذه الإجابات تساعدك تجهز طلبك؛ القرار النهائي يتحدد بعد مراجعة الموقع والتفاصيل.</p></div><dl class="quick-answers"><div><dt>ما الفرق بين الكور دريل والتكسير؟</dt><dd>الكور دريل يجهز فتحة دائرية بالمقاس المطلوب لمرور المواسير أو الكابلات، بينما التكسير يُستخدم لأعمال مختلفة وقد يؤثر على التشطيبات حول مكان الفتحة.</dd></div><div><dt>كيف أحدد مقاس فتحة التكييف أو الغاز؟</dt><dd>اطلب القطر والميل والمكان من فني التركيب أو جهة الغاز قبل الحفر؛ مقاس الماسورة وحده لا يكفي دائمًا بسبب العزل والخلوص.</dd></div><div><dt>ما المعلومات المطلوبة لعرض سعر دقيق؟</dt><dd>أرسل المنطقة وصور المكان وعدد الفتحات والقطر وسُمك الحائط أو السقف إن أمكن، ثم نراجع الوصول والخامة قبل تأكيد السعر والموعد.</dd></div></dl><div class="core-actions"><a class="btn btn-primary" href="/خدماتنا/تخريم-خرسانة/">تفاصيل تخريم الخرسانة</a><a class="btn btn-outline" href="/الاسئلة-الشائعة/">كل الأسئلة الشائعة</a></div></div></section>
-  <section class="section" aria-labelledby="process-h"><div class="container"><div class="section-header"><span class="section-label">من الطلب للتنفيذ</span><h2 id="process-h">شغلك واضح في كل خطوة</h2></div><div class="steps-grid">
-    {[['أرسل التفاصيل','صورة المكان، المنطقة، عدد الفتحات والمقاسات المطلوبة.'],['راجع عرض السعر','نراجع الخامة والعمق وإمكانية الوصول ونوضح التفاصيل المطلوبة للتسعير.'],['اتفق على الموعد','نؤكد إمكانية الخدمة في منطقتك والتجهيزات قبل الزيارة.'],['تنفيذ ومراجعة','يُنفذ العمل في الموقع والمقاس المتفق عليهما، مع مراجعة الفتحات عند التسليم.']].map(([heading, text], index) => <div class="step-card"><span class="step-num">{index + 1}</span><h3>{heading}</h3><p>{text}</p></div>)}
-  </div></div></section>
-  <section class="section" aria-labelledby="guides-h"><div class="container"><div class="section-heading-row"><div><span class="section-label">قرر وأنت فاهم التفاصيل</span><h2 id="guides-h">أدلة عملية قبل طلب الكور</h2></div><a href="/نبذة-عنا/" class="text-link">عن صنايعي كور ←</a></div><div class="grid-3"><a class="core-service" href="/مقالات/core-drilling-guide/"><h3>دليل الكور دريل للخرسانة</h3><p class="spaced-copy">متى تحتاج فتحة دائرية، وما الذي تجهزه قبل التواصل، ومتى يلزم اعتماد مهندس.</p><span class="text-link">اقرأ دليل الكور ←</span></a><a class="core-service" href="/مقالات/core-drilling-uses/"><h3>ما المقاس المناسب لفتحتك؟</h3><p class="spaced-copy">ما الذي تطلبه من فني الغاز أو التكييف أو السباكة قبل تحديد القطر والمكان.</p><span class="text-link">دليل استخدامات الكور ←</span></a><a class="core-service" href="/مقالات/concrete-cutting-types/"><h3>كور أم منشار ماسي؟</h3><p class="spaced-copy">اختيار الخدمة حسب شكل الفتحة والغرض منها وتفاصيل موضع العمل.</p><span class="text-link">قارن طرق الفتح والقص ←</span></a><a class="core-service" href="/مقالات/concrete-cutting-prices/"><h3>كيف تقارن عروض الأسعار؟</h3><p class="spaced-copy">راجع وحدة التسعير والأبعاد والبنود المشمولة والرفع والترحيل قبل الاتفاق.</p><span class="text-link">دليل مقارنة التكلفة ←</span></a></div></div></section>
-  <section class="section-alt" id="quote" aria-labelledby="quote-h"><div class="container core-guide-grid"><div><span class="section-label">اعرف تكلفة شغلك</span><h2 id="quote-h">سعر فتحة الكور<br />حسب تفاصيل موقعك</h2><p class="spaced-copy">القطر والسُمك ونوع الخرسانة وعدد الفتحات عوامل أساسية في تكلفة التخريم. جهّز الطلب هنا وافتحه على واتساب، وأرفق صور الموقع داخل المحادثة.</p><a href="/اسعار-الخدمات/" class="text-link">أسعار فتحات الكور وعوامل التسعير ←</a><p class="quote-note">هذا طلب عرض سعر؛ الموعد والتكلفة يتأكدان بعد مراجعة التفاصيل معك.</p></div><QuoteRequest /></div></section>
-  <section class="section" aria-labelledby="areas-h"><div class="container"><div class="section-heading-row"><div><span class="section-label">نطاق الخدمة</span><h2 id="areas-h">صنايعي كور قريب من شغلك</h2></div><a href="/مناطق/" class="text-link">تفاصيل مناطق الخدمة ←</a></div><div class="area-links">{areas.map(([slug, text]) => <a href={`/مناطق/${slug}/`}><h3>{slug.replaceAll('-', ' ')}</h3><p>{text}</p><span aria-hidden="true">←</span></a>)}</div><p class="quote-note">تواصل لتأكيد إمكانية الوصول إلى عنوانك وموعد التنفيذ قبل الحجز.</p></div></section>
-  <section class="section-alt" aria-labelledby="faq-h"><div class="container core-guide-grid"><div><span class="section-label">إجابات تهمك</span><h2 id="faq-h">أسئلة عن الكور<br />وتخريم الخرسانة</h2><p class="spaced-copy">من المقاس والتكلفة إلى تجهيز الموقع.</p><a href="/الاسئلة-الشائعة/" class="text-link">المزيد من الأسئلة ←</a></div><div class="native-faq">{faqs.map(([question, answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}</div></div></section>
-  <section class="cta-section"><div class="container cta-inner"><span class="eyebrow">ابدأ بتفاصيل شغلك</span><h2>محتاج صنايعي كور؟<br />خلّينا نراجع المطلوب معاك</h2><p>اتصل مباشرة أو أرسل صورة المكان على واتساب لطلب عرض سعر.</p><div class="cta-btns"><a href="tel:+201271940742" class="btn btn-white"><bdi>01271940742</bdi> — اتصال مباشر</a><a href="https://wa.me/201271940742?text=أريد%20عرض%20سعر%20لأعمال%20الكور%20والتخريم" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">أرسل تفاصيلك على واتساب</a></div></div></section>
+
+  <section class="section" aria-labelledby="quick-answers-h">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">معايير العمل الميداني</span>
+        <h2 id="quick-answers-h">إجابات هندسية سريعة قبل طلب صنايعي كور</h2>
+        <p>معايير تنفيذ واضحة تضمن سلامة العنصر الخرساني ودقة المقاس والاتفاق الشفاف على التكلفة.</p>
+      </div>
+      <dl class="quick-answers">
+        <div>
+          <dt>لماذا التاج الماسي المبرد بالماء؟</dt>
+          <dd>يبرد القطع الماسي أثناء اختراق الخرسانة وحديد التسليح فيمنع الغبار والاهتزازات ويحفظ البلاط والسيراميك والرخام حول الفتحة بدون شروخ.</dd>
+        </div>
+        <div>
+          <dt>متى يلزم اعتماد مهندس إنشائي؟</dt>
+          <dd>أي فتحة أو قص داخل عمود أو كمرة أو بلاطة سقف حاملة تستلزم مراجعة واعتماد مهندس إنشائي لموضع الفتحة قبل البدء لحماية التسليح الرئيسي.</dd>
+        </div>
+        <div>
+          <dt>كيف تحصل على أدق تسعير من أول مكالمة؟</dt>
+          <dd>أبلغنا بالغرض من الفتحة أو القطر بالبوصة، عدد الفتحات، سُمك الحائط أو السقف، والمنطقة؛ ونؤكد لك السعر والموعد والبنود المشمولة فورًا.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section-surface" aria-labelledby="process-h">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">آلية التنفيذ</span>
+        <h2 id="process-h">أربع خطوات منظمة من الاتصال حتى تسليم الفتحات</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-num">01</span>
+          <h3>تحديد المقاس والمواصفات</h3>
+          <p>تحديد القطر أو أبعاد القص، العدد، خامة الجدار أو السقف، والمنطقة عبر الاتصال أو واتساب.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">02</span>
+          <h3>تأكيد السعر والموعد</h3>
+          <p>توضيح التكلفة الشاملة ونطاق العمل (الحماية، التبريد، تجميع المخلفات) وتثبيت موعد الزيارة.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">03</span>
+          <h3>التثبيت والتنفيذ الماسي</h3>
+          <p>فحص مسارات الكهرباء، تثبيت قاعدة الكور أو مسار المنشار، وتنفيذ القطع بدقة واستقامة.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">04</span>
+          <h3>المراجعة والتسليم</h3>
+          <p>مراجعة القطر والميل والعدد معك أو مع فني التكييف أو السباكة وتسليم الموقع نظيفًا.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt" id="quote" aria-labelledby="quote-h">
+    <div class="container split-asymmetric">
+      <div>
+        <span class="section-label">تسعير مباشر</span>
+        <h2 id="quote-h">احصل على عرض سعر واضح لفتحات الكور أو قص الخرسانة</h2>
+        <p class="spaced-copy">
+          سواء كنت تحتاج فتحة تكييف أو غاز واحدة في شقة مشطبة أو جدول فتحات وأمتار قص لمشروع مقاولات أو مصنع، نوضح لك التكلفة والمدة قبل التحرك.
+        </p>
+        <ul class="bullet-list">
+          <li>تنفيذ في القاهرة الكبرى والمدن الجديدة والمحافظات وفق الحجز.</li>
+          <li>معدات كور دريل هيلتي وتيجان ماسية لجميع الأقطار (1–12 بوصة).</li>
+          <li>مناشير حائط وأرضيات وسلك ماسي لفتحات الأبواب والنوافذ والكمرات.</li>
+        </ul>
+        <div class="actions-row">
+          <a href="tel:+201271940742" class="btn btn-dark">اتصال مباشر <bdi dir="ltr">01271940742</bdi></a>
+          <a href="/نبذة-عنا/" class="btn btn-outline">عن شركة صنايعي كور</a>
+        </div>
+      </div>
+      <QuoteRequest />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="areas-h">
+    <div class="container">
+      <div class="section-heading-row">
+        <div>
+          <span class="section-label">التغطية الجغرافية في مصر</span>
+          <h2 id="areas-h">مناطق تنفيذ أعمال الكور وقص الخرسانة</h2>
+        </div>
+        <a href="/مناطق/" class="text-link">عرض جميع المحافظات (20 منطقة) ←</a>
+      </div>
+      <div class="area-links">
+        {featuredAreas.map(area => (
+          <a href={`/مناطق/${area.slug}/`}>
+            <h3>{area.title}</h3>
+            <p>{area.text}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-surface" aria-labelledby="guides-h">
+    <div class="container">
+      <div class="section-heading-row">
+        <div>
+          <span class="section-label">المكتبة الهندسية</span>
+          <h2 id="guides-h">أدلة فنية قبل طلب تخريم أو قص الخرسانة</h2>
+        </div>
+        <a href="/مقالات/" class="text-link">جميع الأدلة والمقالات ←</a>
+      </div>
+      <div class="grid-3">
+        {featuredGuides.map(guide => (
+          <a class="service-card" href={`/مقالات/${guide.slug}/`}>
+            <h3>{guide.title}</h3>
+            <p>{guide.text}</p>
+            <span class="text-link">قراءة الدليل ←</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt" aria-labelledby="faq-h">
+    <div class="container split-asymmetric">
+      <div>
+        <span class="section-label">الأسئلة الشائعة</span>
+        <h2 id="faq-h">أكثر الأسئلة تكرارًا حول فتحات الكور وقص الخرسانة</h2>
+        <p class="spaced-copy">إجابات مباشرة حول الأسعار الاسترشادية، السلامة الإنشائية في الأسقف، وتنفيذ الشفاطات والمنشار الماسي.</p>
+        <a href="/الاسئلة-الشائعة/" class="text-link">صفحة الأسئلة الشائعة الكاملة ←</a>
+      </div>
+      <div class="native-faq">
+        {faqs.map(([question, answer]) => (
+          <details>
+            <summary>{question}</summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container cta-band-inner">
+      <div>
+        <span class="section-label">تواصل مباشر مع الفريق الفني</span>
+        <h2>جاهز لتنفيذ فتحات الكور أو قص الخرسانة في موقعك؟</h2>
+        <p>اتصل مباشرة على <bdi dir="ltr">01271940742</bdi> أو أرسل مقاسات الفتحات عبر واتساب لتأكيد السعر والموعد.</p>
+      </div>
+      <div class="cta-band-actions">
+        <a href="tel:+201271940742" class="btn btn-primary btn-lg">اتصل الآن <bdi dir="ltr">01271940742</bdi></a>
+        <a href="https://wa.me/201271940742?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%B9%D8%B1%D8%B6%20%D8%B3%D8%B9%D8%B1%20%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84%20%D8%A7%D9%84%D9%83%D9%88%D8%B1%20%D9%88%D9%82%D8%B5%20%D8%A7%D9%84%D8%AE%D8%B1%D8%B3%D8%A7%D9%86%D8%A9" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener noreferrer">راسلنا على واتساب</a>
+      </div>
+    </div>
+  </section>
 </Layout>

@@ -1,8 +1,84 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { areas } from '../../data/areas';
+
+const greaterCairo = areas.slice(0, 5);
+const deltaAndCanal = areas.slice(5, 14);
+const coastalAndUpper = areas.slice(14);
 ---
-<Layout title="مناطق خدمة صنايعي كور | القاهرة والجيزة ومحافظات أخرى" description="راجع مناطق خدمة صنايعي كور في القاهرة والجيزة والإسكندرية والقليوبية والشرقية والمنوفية والغربية والدقهلية والإسماعيلية. اتصل على 01271940742 لتأكيد تغطية عنوانك والموعد.">
-<div class="breadcrumb"><div class="container"><nav aria-label="مسار التنقل"><a href="/">الرئيسية</a><span>›</span><span>المناطق</span></nav><h1>مناطق خدمة صنايعي كور — 01271940742</h1><p>صفحات خدمة للمحافظات والمناطق التي نراجع طلباتها؛ اختَر موقعك وأرسل التفاصيل لتأكيد التغطية والموعد ومتطلبات الدخول قبل الحجز.</p></div></div>
-<section class="section"><div class="container"><div class="section-header"><span class="section-label">نطاق التغطية</span><h2>تخريم وقص الخرسانة حسب مراجعة الموقع</h2><p>اختلاف المحافظة أو المدينة لا يكفي وحده لتأكيد الخدمة. صور المكان والمقاس ونوع العمل والعنوان التقريبي هي الأساس لمراجعة الطلب بشكل مهني.</p></div><div class="grid-3">{areas.map(area => <a class="core-service" href={`/مناطق/${area.slug}/`}><h2 style="font-size:1.2rem">{area.name}</h2><p class="spaced-copy">{area.intro}</p><span class="text-link">تفاصيل الطلب في المنطقة ←</span></a>)}</div><p class="spaced-copy">إذا كان موقعك خارج هذه المناطق، أرسل العنوان التقريبي وحجم العمل للاستفسار عن إمكانية ترتيب زيارة. لا يُؤكد الموعد إلا بعد مراجعة التفاصيل.</p><a class="btn btn-primary" href="/اتصل-بنا/">استفسر عن تغطية موقعك</a></div></section>
+
+<Layout
+  title="مناطق خدمة تخريم وقص الخرسانة في مصر | صنايعي كور 01271940742"
+  description="تغطية فتحات الكور وتخريم وقص الخرسانة بالمنشار الماسي في القاهرة الكبرى، التجمع الخامس، أكتوبر وزايد، الإسكندرية، الدلتا، القناة، والصعيد. 01271940742."
+>
+  <header class="page-banner">
+    <div class="container">
+      <nav class="breadcrumb-nav" aria-label="مسار التنقل">
+        <a href="/">الرئيسية</a><span>›</span>
+        <span>مناطق الخدمة</span>
+      </nav>
+      <h1>مناطق خدمة تخريم وقص الخرسانة في مصر — <bdi dir="ltr">01271940742</bdi></h1>
+      <p class="banner-lead">
+        نغطي القاهرة الكبرى والمدن الجديدة يوميًا، وننفذ طلبات المحافظات والمناطق الصناعية والقرى السياحية وفق حجز مسبق وتأكيد العنوان ونطاق العمل.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">النطاق الرئيسي</span>
+        <h2>القاهرة الكبرى والمدن الجديدة والإسكندرية</h2>
+      </div>
+      <div class="grid-3">
+        {greaterCairo.map(area => (
+          <a class="service-card" href={`/مناطق/${area.slug}/`}>
+            <h3>{area.name}</h3>
+            <p>{area.places.join(' · ')}</p>
+            <span class="text-link">تفاصيل الخدمة في المنطقة ←</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-surface">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">الدلتا والقناة</span>
+        <h2>محافظات الدلتا والعاشر من رمضان ومدن القناة</h2>
+      </div>
+      <div class="grid-3">
+        {deltaAndCanal.map(area => (
+          <a class="service-card" href={`/مناطق/${area.slug}/`}>
+            <h3>{area.name}</h3>
+            <p>{area.places.join(' · ')}</p>
+            <span class="text-link">تفاصيل الخدمة في المنطقة ←</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">المدن الساحلية والصعيد</span>
+        <h2>الساحل الشمالي والعلمين والبحر الأحمر ومحافظات الصعيد</h2>
+      </div>
+      <div class="grid-3">
+        {coastalAndUpper.map(area => (
+          <a class="service-card" href={`/مناطق/${area.slug}/`}>
+            <h3>{area.name}</h3>
+            <p>{area.places.join(' · ')}</p>
+            <span class="text-link">تفاصيل الخدمة في المنطقة ←</span>
+          </a>
+        ))}
+      </div>
+      <div class="actions-row mt-32">
+        <a class="btn btn-primary" href="tel:+201271940742">تأكيد التغطية والموعد <bdi dir="ltr">01271940742</bdi></a>
+        <a class="btn btn-outline" href="/اتصل-بنا/">صفحة التواصل المباشر</a>
+      </div>
+    </div>
+  </section>
 </Layout>

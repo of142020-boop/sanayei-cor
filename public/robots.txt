@@ -1,4 +1,24 @@
 User-agent: *
 Allow: /
 
+# Generative Search & AI Crawlers (GEO)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://sanayeicor.com/sitemap-index.xml
 Sitemap: https://sanayeicor.com/sitemap.xml

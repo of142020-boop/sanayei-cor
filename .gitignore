@@ -12,12 +12,18 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
-# environment variables
+# environment variables & local secrets/reports/scripts
 .env
-.env.production
+.env.*
 secrets/
 reports/
+scripts/
+
+# local audit notes & preview screenshots
+COMPETITOR-PLAN.md
+SEO-LAUNCH.md
+site-preview.png
+competitor-service-preview.png
 
 # macOS-specific files
 .DS_Store

@@ -1,47 +1,59 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { getCollection } from "astro:content";
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
-const allPosts = await getCollection("blog");
-// Sort by date descending
-allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const allPosts = await getCollection('blog');
+allPosts.sort((a, b) => (b.data.updatedDate || b.data.date).valueOf() - (a.data.updatedDate || a.data.date).valueOf());
 
-const title = "دليل تخريم وقص الخرسانة | صنايعي كور 01271940742";
-const description = "مقالات عملية عن تخريم وقص الخرسانة وفتحات الكور. اتصل على 01271940742 لطلب عرض سعر بعد مراجعة صور الموقع والمقاسات.";
+const title = 'الأدلة الفنية لتخريم وقص الخرسانة والشفاطات | 01271940742';
+const description = 'أدلة عملية في تخريم الخرسانة بالكور دريل، قص الخرسانة بالمنشار الماسي، مقاسات فتحات الغاز والتكييف والسباكة، وتركيب الشفاطات في مصر. 01271940742.';
 ---
 
-<Layout title={title} description={description} navbarStyle="solid">
-  <div class="page-header" style="background: linear-gradient(135deg, var(--dark) 0%, #1a252f 100%); padding-top: 150px; padding-bottom: 80px; color: white; text-align: center;">
+<Layout title={title} description={description}>
+  <header class="page-banner page-banner-dark">
     <div class="container">
-      <h1 style="font-size: 3rem; margin-bottom: 20px;">دليل صنايعي كور — 01271940742</h1>
-      <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: #ccc;">كل ما تريد معرفته عن تقنيات قص وتخريم الخرسانة، والمعدات، وأسعار الخدمات في السوق المصري.</p>
+      <nav class="breadcrumb-nav" aria-label="مسار التنقل">
+        <a href="/">الرئيسية</a><span>›</span>
+        <span>الأدلة الفنية والمدونة</span>
+      </nav>
+      <h1>الأدلة الفنية لتخريم وقص الخرسانة وتأسيس الشفاطات</h1>
+      <p class="banner-lead">
+        مراجع تطبيقية تشرح اختيار الأقطار، مقارنة الكور دريل بالمنشار الماسي، تخريم السيراميك والرخام بدون كسور، وأسس تأسيس شفاطات المطابخ والحمامات في مصر.
+      </p>
     </div>
-  </div>
+  </header>
 
-  <section class="section" style="background-color: #f8f9fa;">
+  <section class="section">
     <div class="container">
-      <div class="grid-3" style="gap: 30px;">
+      <div class="grid-3">
         {allPosts.map(post => (
-          <article class="blog-card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease;">
-            <a href={`/مقالات/${post.id}/`} style="display: block; text-decoration: none; color: inherit;">
+          <article class="blog-card">
+            <a href={`/مقالات/${post.id}/`}>
               {post.data.image && (
-                <div style="height: 220px; overflow: hidden;">
-                  <img src={post.data.image} alt={post.data.title} style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" />
+                <div class="blog-card-media">
+                  <img
+                    src={post.data.image}
+                    alt={post.data.title}
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               )}
-              <div style="padding: 25px;">
-                <div style="display:flex; gap:10px; margin-bottom:15px; flex-wrap:wrap;">
-                  {post.data.tags.map(tag => (
-                    <span style="background-color: rgba(228, 58, 21, 0.1); color: var(--primary); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">{tag}</span>
+              <div class="blog-card-body">
+                <div class="tag-list">
+                  {post.data.tags.slice(0, 3).map(tag => (
+                    <span class="tag-pill">{tag}</span>
                   ))}
                 </div>
-                <h2 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--dark); line-height: 1.4;">{post.data.title}</h2>
-                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
-                  {post.data.description}
-                </p>
-                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px;">
-                  <span style="font-size: 0.85rem; color: #888;">{post.data.date.toISOString().split('T')[0]}</span>
-                  <span style="color: var(--primary); font-weight: bold; font-size: 0.9rem;">اقرأ المزيد &larr;</span>
+                <h2>{post.data.title}</h2>
+                <p>{post.data.description}</p>
+                <div class="blog-card-foot">
+                  <time datetime={(post.data.updatedDate || post.data.date).toISOString()}>
+                    {(post.data.updatedDate || post.data.date).toISOString().split('T')[0]}
+                  </time>
+                  <span class="text-link">اقرأ الدليل ←</span>
                 </div>
               </div>
             </a>
@@ -50,13 +62,4 @@ const description = "مقالات عملية عن تخريم وقص الخرسا
       </div>
     </div>
   </section>
-
-  <style>
-    .blog-card:hover {
-      transform: translateY(-10px);
-    }
-    .blog-card:hover img {
-      transform: scale(1.05);
-    }
-  </style>
 </Layout>

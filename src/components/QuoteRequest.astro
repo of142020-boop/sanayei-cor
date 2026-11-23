@@ -1,26 +1,50 @@
 ---
-interface Props { initialService?: string; initialArea?: string }
+interface Props {
+  initialService?: string;
+  initialArea?: string;
+}
+
 const { initialService, initialArea } = Astro.props;
-const options = ['تخريم خرسانة بالكور', 'فتحات تكييف', 'فتحات غاز أو شفاط', 'تركيب وتأسيس شفاطات', 'فتحات سباكة', 'قص خرسانة بالمنشار', 'تزريع أشاير حديد'];
+const options = [
+  'تخريم خرسانة بالكور دريل',
+  'قص الخرسانة بالمنشار الماسي',
+  'فتحات التكييف والتهوية',
+  'فتحات الغاز والشفاطات',
+  'تركيب وتأسيس شفاطات',
+  'فتحات السباكة والصرف',
+  'تزريع أشاير الحديد',
+];
 if (initialService && !options.includes(initialService)) options.unshift(initialService);
 ---
-<form class="quote-form" id="quote-request" action="https://wa.me/201271940742" method="get" target="_blank" rel="noopener noreferrer">
-  <h3>جهّز طلب عرض السعر</h3>
-  <label for="quote-service">الخدمة المطلوبة</label>
-  <select id="quote-service" required><option value="">اختر الخدمة</option>{options.map(option => <option selected={option === initialService}>{option}</option>)}</select>
-  <label for="quote-area">المنطقة</label><input id="quote-area" value={initialArea} required maxlength="120" placeholder="مثال: مدينة نصر، القاهرة" autocomplete="address-level2" />
-  <label for="quote-details">عدد الفتحات والمقاسات والتفاصيل</label><textarea id="quote-details" required maxlength="1500" rows="4" placeholder="مثال: فتحتان للتكييف في حائط خرساني، والمقاس يحدده فني التركيب"></textarea>
+<form class="quote-form" id="quote-request" action="https://wa.me/201271940742" method="get" target="_blank">
+  <h3>اطلب تسعيرًا هندسيًا لموقعك</h3>
+  <label for="quote-service">نوع الخدمة المطلوبة</label>
+  <select id="quote-service" required>
+    <option value="">اختر الخدمة</option>
+    {options.map(option => <option selected={option === initialService}>{option}</option>)}
+  </select>
+
+  <label for="quote-area">المنطقة / المحافظة</label>
+  <input id="quote-area" value={initialArea} required maxlength="120" placeholder="مثال: التجمع الخامس أو مدينة نصر" autocomplete="address-level2" />
+
+  <label for="quote-details">المقاسات وعدد الفتحات وسُمك الخرسانة</label>
+  <textarea id="quote-details" required maxlength="1500" rows="4" placeholder="مثال: فتحتان كور قطر 4 بوصة في حائط خرساني سُمك 25 سم للتكييف"></textarea>
+
   <input type="hidden" name="text" id="quote-message" />
-  <button type="submit" class="btn btn-primary w-full">افتح الطلب على واتساب ←</button>
-  <p class="quote-note">ستفتح محادثة واتساب لتراجع الرسالة وترسلها بنفسك. يمكنك إضافة الصور هناك.</p>
-  <noscript><p>لتجهيز الطلب تلقائيًا فعّل JavaScript، أو <a href="https://wa.me/201271940742">تواصل مباشرة على واتساب</a>.</p></noscript>
+  <button type="submit" class="btn btn-primary w-full">إرسال المواصفات وتأكيد السعر ←</button>
+  <p class="quote-note">أو اتصل مباشرة على <a class="text-link" href="tel:+201271940742"><bdi dir="ltr">01271940742</bdi></a> لتأكيد الموعد وتفاصيل التنفيذ.</p>
+  <noscript>
+    <p class="quote-note">تواصل مباشرة على <a class="text-link" href="https://wa.me/201271940742">واتساب 01271940742</a>.</p>
+  </noscript>
 </form>
+
 <script>
   const form = document.querySelector<HTMLFormElement>('#quote-request');
   form?.addEventListener('submit', () => {
     const service = document.querySelector<HTMLSelectElement>('#quote-service')!.value;
     const area = document.querySelector<HTMLInputElement>('#quote-area')!.value.trim();
     const details = document.querySelector<HTMLTextAreaElement>('#quote-details')!.value.trim();
-    document.querySelector<HTMLInputElement>('#quote-message')!.value = `مرحبًا صنايعي كور، أريد عرض سعر.\nالخدمة: ${service}\nالمنطقة: ${area}\nالتفاصيل: ${details}\nسأرفق صور الموقع في المحادثة.`;
+    document.querySelector<HTMLInputElement>('#quote-message')!.value =
+      `مرحبًا صنايعي كور، أريد عرض سعر وتأكيد موعد.\nالخدمة: ${service}\nالمنطقة: ${area}\nالمواصفات: ${details}`;
   });
 </script>
