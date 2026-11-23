@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface FaqItem {
   question: string;
@@ -19,189 +19,254 @@ interface Props {
 
 const {
   title,
-  description = 'صنايعي كور لتخريم وقص الخرسانة بالكور دريل والمنشار الماسي في القاهرة والجيزة ومصر: فتحات تكييف وغاز وسباكة وشفاطات. اتصل 01271940742.',
+  description = "صنايعي كور لتخريم وقص الخرسانة بالكور دريل والمنشار الماسي في القاهرة والجيزة ومصر: فتحات تكييف وغاز وسباكة وشفاطات. اتصل 01271940742.",
   canonical,
-  ogImage = '/images/social-card.png',
+  ogImage = "/images/social-card.png",
   noindex = false,
-  dateModified = '2026-11-23',
+  dateModified = "2026-11-23",
   faqs = [],
   extraGraph = [],
 } = Astro.props;
 
-const siteUrl = Astro.site?.origin || 'https://sanayeicor.com';
+const siteUrl = Astro.site?.origin || "https://sanayeicor.com";
 const orgId = `${siteUrl}/#organization`;
 const websiteId = `${siteUrl}/#website`;
-const canonicalUrl = new URL(canonical || `${Astro.url.pathname.replace(/\/$/, '')}/`, siteUrl).href;
-const socialImage = ogImage.startsWith('/') ? ogImage : '/images/social-card.png';
+const canonicalUrl = new URL(
+  canonical || `${Astro.url.pathname.replace(/\/$/, "")}/`,
+  siteUrl,
+).href;
+const socialImage = ogImage.startsWith("/")
+  ? ogImage
+  : "/images/social-card.png";
 const currentPath = decodeURIComponent(Astro.url.pathname);
-const pathParts = currentPath.split('/').filter(Boolean);
+const pathParts = currentPath.split("/").filter(Boolean);
 
 const segmentLabels: Record<string, string> = {
-  'خدماتنا': 'الخدمات',
-  'مناطق': 'مناطق الخدمة',
-  'مقالات': 'المدونة والأدلة',
-  'اسعار-الخدمات': 'أسعار الخدمات',
-  'الاسئلة-الشائعة': 'الأسئلة الشائعة',
-  'نبذة-عنا': 'عن صنايعي كور',
-  'اتصل-بنا': 'اتصل بنا',
+  خدماتنا: "الخدمات",
+  مناطق: "مناطق الخدمة",
+  مقالات: "المدونة والأدلة",
+  "اسعار-الخدمات": "أسعار الخدمات",
+  "الاسئلة-الشائعة": "الأسئلة الشائعة",
+  "نبذة-عنا": "عن صنايعي كور",
+  "اتصل-بنا": "اتصل بنا",
 };
 
 const breadcrumbItems = [
-  { '@type': 'ListItem', position: 1, name: 'الرئيسية', item: `${siteUrl}/` },
+  { "@type": "ListItem", position: 1, name: "الرئيسية", item: `${siteUrl}/` },
   ...pathParts.map((part, index) => ({
-    '@type': 'ListItem',
+    "@type": "ListItem",
     position: index + 2,
-    name: index === pathParts.length - 1
-      ? title.split('|')[0].split('—')[0].trim()
-      : (segmentLabels[part] || part.replaceAll('-', ' ')),
-    item: new URL(`/${pathParts.slice(0, index + 1).join('/')}/`, siteUrl).href,
+    name:
+      index === pathParts.length - 1
+        ? title.split("|")[0].split("—")[0].trim()
+        : segmentLabels[part] || part.replaceAll("-", " "),
+    item: new URL(`/${pathParts.slice(0, index + 1).join("/")}/`, siteUrl).href,
   })),
 ];
 
-const normalizedFaqs: FaqItem[] = faqs.map(item =>
-  Array.isArray(item) ? { question: item[0], answer: item[1] } : item
+const normalizedFaqs: FaqItem[] = faqs.map((item) =>
+  Array.isArray(item) ? { question: item[0], answer: item[1] } : item,
 );
 
 const graphNodes: Record<string, unknown>[] = [
   {
-    '@type': ['Organization', 'LocalBusiness', 'HomeAndConstructionBusiness'],
-    '@id': orgId,
-    name: 'صنايعي كور',
-    alternateName: 'Sanayei Cor',
-    description: 'مقاول متخصص في تخريم الخرسانة المسلحة بالكور دريل الماسي، وقص الخرسانة بالمنشار الماسي، وفتحات التكييف والغاز والسباكة، وتزريع أشاير الحديد، وتركيب الشفاطات في مصر.',
+    "@type": ["Organization", "LocalBusiness", "HomeAndConstructionBusiness"],
+    "@id": orgId,
+    name: "صنايعي كور",
+    alternateName: "Sanayei Cor",
+    description:
+      "مقاول متخصص في تخريم الخرسانة المسلحة بالكور دريل الماسي، وقص الخرسانة بالمنشار الماسي، وفتحات التكييف والغاز والسباكة، وتزريع أشاير الحديد، وتركيب الشفاطات في مصر.",
     url: `${siteUrl}/`,
-    telephone: '+201271940742',
-    priceRange: '200–1300 EGP',
+    telephone: "+201271940742",
+    priceRange: "200–1300 EGP",
+    hasMap: 'https://share.google/O2IWRCj6q6r7nxk9D',
+    sameAs: ['https://share.google/O2IWRCj6q6r7nxk9D'],
     logo: {
-      '@type': 'ImageObject',
+      "@type": "ImageObject",
       url: `${siteUrl}/images/sanayei-cor-logo.png`,
       width: 512,
       height: 512,
     },
     image: `${siteUrl}${socialImage}`,
     address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'القاهرة',
-      addressRegion: 'القاهرة الكبرى',
-      addressCountry: 'EG',
+      "@type": "PostalAddress",
+      addressLocality: "القاهرة",
+      addressRegion: "القاهرة الكبرى",
+      addressCountry: "EG",
     },
     knowsAbout: [
-      'تخريم الخرسانة بالكور دريل الماسي',
-      'عمل فتحات كور في الجدران والأسقف',
-      'قص الخرسانة بالمنشار الماسي الجداري ومنشار السلك',
-      'فتحات التكييف السبليت والمركزي والتهوية',
-      'فتحات الغاز الطبيعي ومداخن السخانات',
-      'تركيب وتأسيس شفاطات المطابخ والحمامات والدكت',
-      'فتحات السباكة والصرف الصحي في الفلات سلاب',
-      'تزريع أشاير الحديد بالإيبوكسي الكيميائي',
+      "تخريم الخرسانة بالكور دريل الماسي",
+      "عمل فتحات كور في الجدران والأسقف",
+      "قص الخرسانة بالمنشار الماسي الجداري ومنشار السلك",
+      "فتحات التكييف السبليت والمركزي والتهوية",
+      "فتحات الغاز الطبيعي ومداخن السخانات",
+      "تركيب وتأسيس شفاطات المطابخ والحمامات والدكت",
+      "فتحات السباكة والصرف الصحي في الفلات سلاب",
+      "تزريع أشاير الحديد بالإيبوكسي الكيميائي",
     ],
     areaServed: [
-      { '@type': 'City', name: 'القاهرة' },
-      { '@type': 'City', name: 'الجيزة' },
-      { '@type': 'City', name: 'التجمع الخامس والقاهرة الجديدة' },
-      { '@type': 'City', name: '6 أكتوبر والشيخ زايد' },
-      { '@type': 'City', name: 'الإسكندرية' },
-      { '@type': 'AdministrativeArea', name: 'القليوبية' },
-      { '@type': 'AdministrativeArea', name: 'الشرقية' },
-      { '@type': 'AdministrativeArea', name: 'المنوفية' },
-      { '@type': 'AdministrativeArea', name: 'الغربية' },
-      { '@type': 'AdministrativeArea', name: 'الدقهلية والمنصورة' },
-      { '@type': 'AdministrativeArea', name: 'الإسماعيلية' },
-      { '@type': 'AdministrativeArea', name: 'السويس والعين السخنة' },
-      { '@type': 'AdministrativeArea', name: 'بورسعيد' },
-      { '@type': 'AdministrativeArea', name: 'دمياط' },
-      { '@type': 'AdministrativeArea', name: 'مطروح والساحل الشمالي' },
-      { '@type': 'AdministrativeArea', name: 'البحر الأحمر والغردقة' },
-      { '@type': 'AdministrativeArea', name: 'المنيا' },
-      { '@type': 'AdministrativeArea', name: 'أسيوط' },
-      { '@type': 'AdministrativeArea', name: 'سوهاج' },
-      { '@type': 'AdministrativeArea', name: 'قنا' },
-      { '@type': 'Country', name: 'مصر' },
+      { "@type": "City", name: "القاهرة" },
+      { "@type": "City", name: "الجيزة" },
+      { "@type": "City", name: "التجمع الخامس والقاهرة الجديدة" },
+      { "@type": "City", name: "6 أكتوبر والشيخ زايد" },
+      { "@type": "City", name: "الإسكندرية" },
+      { "@type": "AdministrativeArea", name: "القليوبية" },
+      { "@type": "AdministrativeArea", name: "الشرقية" },
+      { "@type": "AdministrativeArea", name: "المنوفية" },
+      { "@type": "AdministrativeArea", name: "الغربية" },
+      { "@type": "AdministrativeArea", name: "الدقهلية والمنصورة" },
+      { "@type": "AdministrativeArea", name: "الإسماعيلية" },
+      { "@type": "AdministrativeArea", name: "السويس والعين السخنة" },
+      { "@type": "AdministrativeArea", name: "بورسعيد" },
+      { "@type": "AdministrativeArea", name: "دمياط" },
+      { "@type": "AdministrativeArea", name: "مطروح والساحل الشمالي" },
+      { "@type": "AdministrativeArea", name: "البحر الأحمر والغردقة" },
+      { "@type": "AdministrativeArea", name: "المنيا" },
+      { "@type": "AdministrativeArea", name: "أسيوط" },
+      { "@type": "AdministrativeArea", name: "سوهاج" },
+      { "@type": "AdministrativeArea", name: "قنا" },
+      { "@type": "Country", name: "مصر" },
     ],
     contactPoint: [
       {
-        '@type': 'ContactPoint',
-        telephone: '+201271940742',
-        contactType: 'تخريم الخرسانة وفتحات الكور',
-        areaServed: 'EG',
-        availableLanguage: ['Arabic'],
+        "@type": "ContactPoint",
+        telephone: "+201271940742",
+        contactType: "تخريم الخرسانة وفتحات الكور",
+        areaServed: "EG",
+        availableLanguage: ["Arabic"],
       },
       {
-        '@type': 'ContactPoint',
-        telephone: '+201271940742',
-        contactType: 'قص الخرسانة بالمنشار الماسي وتزريع الأشاير',
-        areaServed: 'EG',
-        availableLanguage: ['Arabic'],
+        "@type": "ContactPoint",
+        telephone: "+201271940742",
+        contactType: "قص الخرسانة بالمنشار الماسي وتزريع الأشاير",
+        areaServed: "EG",
+        availableLanguage: ["Arabic"],
       },
       {
-        '@type': 'ContactPoint',
-        telephone: '+201271940742',
-        contactType: 'تركيب وتأسيس شفاطات المطابخ والحمامات',
-        areaServed: 'EG',
-        availableLanguage: ['Arabic'],
+        "@type": "ContactPoint",
+        telephone: "+201271940742",
+        contactType: "تركيب وتأسيس شفاطات المطابخ والحمامات",
+        areaServed: "EG",
+        availableLanguage: ["Arabic"],
       },
     ],
     hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'خدمات صنايعي كور للخرسانة والتمديدات',
+      "@type": "OfferCatalog",
+      name: "خدمات صنايعي كور للخرسانة والتمديدات",
       itemListElement: [
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'تخريم خرسانة وفتحات كور بالكور دريل', url: `${siteUrl}/خدماتنا/تخريم-خرسانة/` } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'قص الخرسانة بالمنشار الماسي', url: `${siteUrl}/خدماتنا/قص-الخرسانة-بالمنشار/` } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'فتحات تكييف وتهوية بالكور', url: `${siteUrl}/خدماتنا/فتحات-تكييف/` } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'فتحات الغاز والشفاطات بالكور', url: `${siteUrl}/خدماتنا/فتحات-الغاز-والشفاطات/` } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'تركيب وتأسيس شفاطات المطابخ والحمامات', url: `${siteUrl}/خدماتنا/تركيب-وتأسيس-شفاطات/` } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'فتحات السباكة والصرف الصحي بالكور', url: `${siteUrl}/خدماتنا/فتحات-سباكة/` } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'تزريع أشاير الحديد بالإيبوكسي الكيميائي', url: `${siteUrl}/خدماتنا/تزريع-اشاير-حديد/` } },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "تخريم خرسانة وفتحات كور بالكور دريل",
+            url: `${siteUrl}/خدماتنا/تخريم-خرسانة/`,
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "قص الخرسانة بالمنشار الماسي",
+            url: `${siteUrl}/خدماتنا/قص-الخرسانة-بالمنشار/`,
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "فتحات تكييف وتهوية بالكور",
+            url: `${siteUrl}/خدماتنا/فتحات-تكييف/`,
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "فتحات الغاز والشفاطات بالكور",
+            url: `${siteUrl}/خدماتنا/فتحات-الغاز-والشفاطات/`,
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "تركيب وتأسيس شفاطات المطابخ والحمامات",
+            url: `${siteUrl}/خدماتنا/تركيب-وتأسيس-شفاطات/`,
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "فتحات السباكة والصرف الصحي بالكور",
+            url: `${siteUrl}/خدماتنا/فتحات-سباكة/`,
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "تزريع أشاير الحديد بالإيبوكسي الكيميائي",
+            url: `${siteUrl}/خدماتنا/تزريع-اشاير-حديد/`,
+          },
+        },
       ],
     },
   },
   {
-    '@type': 'WebSite',
-    '@id': websiteId,
+    "@type": "WebSite",
+    "@id": websiteId,
     url: `${siteUrl}/`,
-    name: 'صنايعي كور',
-    inLanguage: 'ar-EG',
-    description: 'الموقع الرسمي لمقاول صنايعي كور المتخصص في تخريم وقص الخرسانة المسلحة بالكور دريل والمنشار الماسي في مصر.',
-    publisher: { '@id': orgId },
+    name: "صنايعي كور",
+    inLanguage: "ar-EG",
+    description:
+      "الموقع الرسمي لمقاول صنايعي كور المتخصص في تخريم وقص الخرسانة المسلحة بالكور دريل والمنشار الماسي في مصر.",
+    publisher: { "@id": orgId },
   },
   {
-    '@type': 'WebPage',
-    '@id': `${canonicalUrl}#webpage`,
+    "@type": "WebPage",
+    "@id": `${canonicalUrl}#webpage`,
     url: canonicalUrl,
     name: title,
     description,
-    inLanguage: 'ar-EG',
+    inLanguage: "ar-EG",
     dateModified,
-    isPartOf: { '@id': websiteId },
-    about: { '@id': orgId },
+    isPartOf: { "@id": websiteId },
+    about: { "@id": orgId },
     primaryImageOfPage: {
-      '@type': 'ImageObject',
+      "@type": "ImageObject",
       contentUrl: `${siteUrl}${socialImage}`,
     },
     speakable: {
-      '@type': 'SpeakableSpecification',
-      cssSelector: ['h1', '.hero-lead', '.banner-lead', '.quick-answers', '.native-faq'],
+      "@type": "SpeakableSpecification",
+      cssSelector: [
+        "h1",
+        ".hero-lead",
+        ".banner-lead",
+        ".quick-answers",
+        ".native-faq",
+      ],
     },
   },
 ];
 
 if (pathParts.length > 0 && !noindex) {
   graphNodes.push({
-    '@type': 'BreadcrumbList',
-    '@id': `${canonicalUrl}#breadcrumb`,
+    "@type": "BreadcrumbList",
+    "@id": `${canonicalUrl}#breadcrumb`,
     itemListElement: breadcrumbItems,
   });
 }
 
 if (normalizedFaqs.length > 0 && !noindex) {
   graphNodes.push({
-    '@type': 'FAQPage',
-    '@id': `${canonicalUrl}#faq`,
-    mainEntity: normalizedFaqs.map(faq => ({
-      '@type': 'Question',
+    "@type": "FAQPage",
+    "@id": `${canonicalUrl}#faq`,
+    mainEntity: normalizedFaqs.map((faq) => ({
+      "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
-        '@type': 'Answer',
+        "@type": "Answer",
         text: faq.answer,
       },
     })),
@@ -213,13 +278,13 @@ for (const node of extraGraph) {
 }
 
 const navLinks = [
-  { href: '/', label: 'الرئيسية' },
-  { href: '/خدماتنا/', label: 'الخدمات' },
-  { href: '/اسعار-الخدمات/', label: 'الأسعار' },
-  { href: '/مناطق/', label: 'المناطق' },
-  { href: '/مقالات/', label: 'الأدلة' },
-  { href: '/نبذة-عنا/', label: 'عن الشركة' },
-  { href: '/اتصل-بنا/', label: 'اتصل بنا' },
+  { href: "/", label: "الرئيسية" },
+  { href: "/خدماتنا/", label: "الخدمات" },
+  { href: "/اسعار-الخدمات/", label: "الأسعار" },
+  { href: "/مناطق/", label: "المناطق" },
+  { href: "/مقالات/", label: "الأدلة" },
+  { href: "/نبذة-عنا/", label: "عن الشركة" },
+  { href: "/اتصل-بنا/", label: "اتصل بنا" },
 ];
 ---
 
@@ -233,16 +298,25 @@ const navLinks = [
     <link rel="icon" href="/favicon.png" type="image/png" sizes="64x64" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt — صنايعي كور" />
+    <link
+      rel="alternate"
+      type="text/plain"
+      href="/llms.txt"
+      title="LLMs.txt — صنايعي كور"
+    />
     <meta name="author" content="صنايعي كور" />
     <meta name="theme-color" content="#181A1B" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    {noindex
-      ? <meta name="robots" content="noindex, nofollow" />
-      : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    }
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta
+        name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+      />
+    )}
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -252,7 +326,10 @@ const navLinks = [
     <meta property="og:image" content={`${siteUrl}${socialImage}`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="صنايعي كور — تخريم وقص الخرسانة بالكور دريل والمنشار الماسي" />
+    <meta
+      property="og:image:alt"
+      content="صنايعي كور — تخريم وقص الخرسانة بالكور دريل والمنشار الماسي"
+    />
     <meta property="og:site_name" content="صنايعي كور" />
     <meta property="og:locale" content="ar_EG" />
 
@@ -267,28 +344,50 @@ const navLinks = [
     <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
 
     <!-- Unified Entity Graph Schema (GEO + Technical SEO) -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@graph': graphNodes,
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": graphNodes,
+      })}
+    />
   </head>
 
   <body>
-    <a class="skip-link" href="#main-content">انتقل إلى المحتوى</a>
+    <a class="skip-link" href="#main-content">
+      انتقل إلى المحتوى
+    </a>
 
     <header class="navbar" id="navbar">
       <div class="container">
         <div class="nav-inner">
-          <a href="/" class="nav-logo" aria-label="صنايعي كور — الصفحة الرئيسية">
-            <img class="brand-mark brand-mark-nav" src="/images/sanayei-cor-logo.svg" width="38" height="38" alt="" />
-            <span>صنايعي <strong>كور</strong></span>
+          <a
+            href="/"
+            class="nav-logo"
+            aria-label="صنايعي كور — الصفحة الرئيسية"
+          >
+            <img
+              class="brand-mark brand-mark-nav"
+              src="/images/sanayei-cor-logo.svg"
+              width="38"
+              height="38"
+              alt=""
+            />
+            <span>
+              صنايعي <strong>كور</strong>
+            </span>
           </a>
 
           <nav class="nav-links" id="navLinks" aria-label="القائمة الرئيسية">
-            {navLinks.map(link => (
+            {navLinks.map((link) => (
               <a
                 href={link.href}
-                class={currentPath === link.href || (currentPath.startsWith(link.href) && link.href !== '/') ? 'active' : ''}
+                class={
+                  currentPath === link.href ||
+                  (currentPath.startsWith(link.href) && link.href !== "/")
+                    ? "active"
+                    : ""
+                }
               >
                 {link.label}
               </a>
@@ -296,12 +395,27 @@ const navLinks = [
           </nav>
 
           <div class="nav-cta">
-            <a href="tel:+201271940742" class="nav-phone-link" aria-label="اتصل على 01271940742">
+            <a
+              href="tel:+201271940742"
+              class="nav-phone-link"
+              aria-label="اتصل على 01271940742"
+            >
               <bdi dir="ltr">01271940742</bdi>
             </a>
-            <a href="tel:+201271940742" class="btn btn-primary nav-call-btn">اتصل الآن</a>
-            <button class="nav-toggle" id="navToggle" type="button" aria-label="فتح وإغلاق القائمة" aria-expanded="false" aria-controls="navLinks">
-              <span></span><span></span><span></span>
+            <a href="tel:+201271940742" class="btn btn-primary nav-call-btn">
+              اتصل الآن
+            </a>
+            <button
+              class="nav-toggle"
+              id="navToggle"
+              type="button"
+              aria-label="فتح وإغلاق القائمة"
+              aria-expanded="false"
+              aria-controls="navLinks"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
             </button>
           </div>
         </div>
@@ -317,22 +431,40 @@ const navLinks = [
         <div class="footer-grid">
           <div class="footer-brand">
             <div class="footer-logo">
-              <img class="brand-mark brand-mark-footer" src="/images/sanayei-cor-logo.svg" width="34" height="34" alt="" />
-              <span>صنايعي <strong>كور</strong></span>
+              <img
+                class="brand-mark brand-mark-footer"
+                src="/images/sanayei-cor-logo.svg"
+                width="34"
+                height="34"
+                alt=""
+              />
+              <span>
+                صنايعي <strong>كور</strong>
+              </span>
             </div>
-            <p>مقاول متخصص في تخريم الخرسانة المسلحة بالكور دريل الماسي، وقص الجدران والأسقف بالمنشار الماسي، وفتحات التكييف والغاز والسباكة، وتزريع أشاير الحديد، وتركيب الشفاطات في مصر.</p>
+            <p>
+              مقاول متخصص في تخريم الخرسانة المسلحة بالكور دريل الماسي، وقص
+              الجدران والأسقف بالمنشار الماسي، وفتحات التكييف والغاز والسباكة،
+              وتزريع أشاير الحديد، وتركيب الشفاطات في مصر.
+            </p>
           </div>
 
           <div class="footer-col">
             <h4>خدماتنا الهندسية</h4>
             <div class="footer-links">
               <a href="/خدماتنا/تخريم-خرسانة/">تخريم خرسانة بالكور دريل</a>
-              <a href="/خدماتنا/قص-الخرسانة-بالمنشار/">قص الخرسانة بالمنشار الماسي</a>
+              <a href="/خدماتنا/قص-الخرسانة-بالمنشار/">
+                قص الخرسانة بالمنشار الماسي
+              </a>
               <a href="/خدماتنا/فتحات-تكييف/">فتحات تكييف وتهوية بالكور</a>
-              <a href="/خدماتنا/فتحات-الغاز-والشفاطات/">فتحات الغاز ومداخن السخانات</a>
+              <a href="/خدماتنا/فتحات-الغاز-والشفاطات/">
+                فتحات الغاز ومداخن السخانات
+              </a>
               <a href="/خدماتنا/تركيب-وتأسيس-شفاطات/">تركيب وتأسيس الشفاطات</a>
               <a href="/خدماتنا/فتحات-سباكة/">فتحات السباكة والصرف</a>
-              <a href="/خدماتنا/تزريع-اشاير-حديد/">تزريع أشاير الحديد بالإيبوكسي</a>
+              <a href="/خدماتنا/تزريع-اشاير-حديد/">
+                تزريع أشاير الحديد بالإيبوكسي
+              </a>
             </div>
           </div>
 
@@ -352,21 +484,56 @@ const navLinks = [
             <h4>التواصل المباشر</h4>
             <div class="footer-contact-list">
               <div class="footer-contact-item">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="var(--accent)" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.06 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="var(--accent)"
+                  aria-hidden="true"
+                >
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.06 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z" />
+                </svg>
                 <div>
-                  <a href="tel:+201271940742" class="text-link"><bdi dir="ltr">01271940742</bdi></a>
+                  <a href="tel:+201271940742" class="text-link">
+                    <bdi dir="ltr">01271940742</bdi>
+                  </a>
                   <small>اتصال مباشر لجميع الأقسام</small>
                 </div>
               </div>
               <div class="footer-contact-item">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="var(--whatsapp)" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="var(--whatsapp)"
+                  aria-hidden="true"
+                >
+                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                </svg>
                 <div>
-                  <a href="https://wa.me/201271940742" class="text-link" target="_blank" rel="noopener noreferrer">واتساب التسعير الفوري</a>
+                  <a
+                    href="https://wa.me/201271940742"
+                    class="text-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    واتساب التسعير الفوري
+                  </a>
                   <small>مراجعة القطر والسُمك وتأكيد الموعد</small>
                 </div>
               </div>
               <div class="footer-contact-item">
-                <small>العمل متاح في القاهرة الكبرى والمحافظات حسب الحجز وتأكيد العنوان.</small>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="var(--accent)" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
+                <div>
+                  <a href="https://share.google/O2IWRCj6q6r7nxk9D" class="text-link" target="_blank" rel="noopener noreferrer">ملف النشاط على خرائط Google</a>
+                  <small>تقييمات العملاء وبيانات النشاط الرسمية</small>
+                </div>
+              </div>
+              <div class="footer-contact-item">
+                <small>
+                  العمل متاح في القاهرة الكبرى والمحافظات حسب الحجز وتأكيد
+                  العنوان.
+                </small>
               </div>
             </div>
           </div>
@@ -376,7 +543,9 @@ const navLinks = [
       <div class="footer-bottom">
         <div class="container">
           <div class="footer-bottom-inner">
-            <p>&copy; {new Date().getFullYear()} صنايعي كور — جميع الحقوق محفوظة</p>
+            <p>
+              &copy; {new Date().getFullYear()} صنايعي كور — جميع الحقوق محفوظة
+            </p>
             <div class="footer-links-row">
               <a href="/نبذة-عنا/">عن الشركة</a>
               <a href="/اسعار-الخدمات/">أسعار الكور والقص</a>
@@ -390,34 +559,54 @@ const navLinks = [
     </footer>
 
     <div class="mobile-contact" aria-label="تواصل سريع">
-      <a class="mobile-contact-action mobile-contact-call" href="tel:+201271940742" aria-label="اتصل الآن على 01271940742">
+      <a
+        class="mobile-contact-action mobile-contact-call"
+        href="tel:+201271940742"
+        aria-label="اتصل الآن على 01271940742"
+      >
         <span class="mobile-contact-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.06 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.06 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z" />
+          </svg>
         </span>
-        <span class="mobile-contact-copy"><strong>اتصل الآن</strong><small dir="ltr">01271940742</small></span>
+        <span class="mobile-contact-copy">
+          <strong>اتصل الآن</strong>
+          <small dir="ltr">01271940742</small>
+        </span>
       </a>
-      <a class="mobile-contact-action mobile-contact-whatsapp" href="https://wa.me/201271940742" target="_blank" rel="noopener noreferrer" aria-label="راسلنا على واتساب لطلب عرض سعر">
+      <a
+        class="mobile-contact-action mobile-contact-whatsapp"
+        href="https://wa.me/201271940742"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="راسلنا على واتساب لطلب عرض سعر"
+      >
         <span class="mobile-contact-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.86 11.86 0 0012.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.59 5.92L.1 24l6.37-1.67a11.86 11.86 0 005.61 1.43h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.17-1.23-6.15-3.45-8.4zM12.08 21.75a9.84 9.84 0 01-5.02-1.37l-.36-.21-3.78.99 1.01-3.68-.24-.38a9.82 9.82 0 01-1.5-5.22c0-5.43 4.42-9.85 9.86-9.85 2.63 0 5.1 1.02 6.96 2.89a9.78 9.78 0 012.88 6.96c0 5.43-4.42 9.87-9.81 9.87zm5.4-7.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.08-.3-.15-1.26-.46-2.4-1.47a9.04 9.04 0 01-1.66-2.07c-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.5.71.31 1.26.5 1.69.64.71.23 1.35.2 1.86.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M20.52 3.48A11.86 11.86 0 0012.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.59 5.92L.1 24l6.37-1.67a11.86 11.86 0 005.61 1.43h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.17-1.23-6.15-3.45-8.4zM12.08 21.75a9.84 9.84 0 01-5.02-1.37l-.36-.21-3.78.99 1.01-3.68-.24-.38a9.82 9.82 0 01-1.5-5.22c0-5.43 4.42-9.85 9.86-9.85 2.63 0 5.1 1.02 6.96 2.89a9.78 9.78 0 012.88 6.96c0 5.43-4.42 9.87-9.81 9.87zm5.4-7.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.08-.3-.15-1.26-.46-2.4-1.47a9.04 9.04 0 01-1.66-2.07c-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.5.71.31 1.26.5 1.69.64.71.23 1.35.2 1.86.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z" />
+          </svg>
         </span>
-        <span class="mobile-contact-copy"><strong>واتساب</strong><small>اطلب تسعيرًا</small></span>
+        <span class="mobile-contact-copy">
+          <strong>واتساب</strong>
+          <small>اطلب تسعيرًا</small>
+        </span>
       </a>
     </div>
 
     <script>
-      const navToggle = document.getElementById('navToggle');
-      const navLinks = document.getElementById('navLinks');
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
 
-      navToggle?.addEventListener('click', () => {
-        navLinks?.classList.toggle('open');
-        const isOpen = navLinks?.classList.contains('open');
-        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      navToggle?.addEventListener("click", () => {
+        navLinks?.classList.toggle("open");
+        const isOpen = navLinks?.classList.contains("open");
+        navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
       });
 
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && navLinks?.classList.contains('open')) {
-          navLinks.classList.remove('open');
-          navToggle?.setAttribute('aria-expanded', 'false');
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && navLinks?.classList.contains("open")) {
+          navLinks.classList.remove("open");
+          navToggle?.setAttribute("aria-expanded", "false");
           navToggle?.focus();
         }
       });
